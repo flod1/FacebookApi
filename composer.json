@@ -1,0 +1,35 @@
+{
+    "name": "flod1/fbpage",
+    "description": "",
+    "type": "library",
+    "license": "",
+    "keywords": [
+        "zf2",
+        "facebook"
+    ],
+    "homepage": "https://github.com/flod1/fbpage",
+    "authors": [
+        {
+            "name": "Florian Degenhardt",
+            "email": "florian.degenhardt@gmx.de",
+            "homepage": "http://www.floit.de",
+            "role": "Lead Developer"
+        }
+    ],
+    "config": {
+        "vendor-dir": "vendor",
+        "process-timeout": 3000
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "facebook/php-sdk-v4": "^5.3"
+    },
+    "autoload": {
+        "psr-0": {
+            "FbPage": "src/"
+        },
+        "classmap": [
+            "./"
+        ]
+    }
+}
