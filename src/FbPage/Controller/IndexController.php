@@ -10,46 +10,27 @@
 namespace FbPage\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\Mvc\Controller\AbstractController;
 use Zend\View\Model\ViewModel;
 use Facebook;
 use Facebook\FacebookRequest;
 use Zend\Debug\Debug;
 use Zend\Session\Container;
 
-class IndexController extends AbstractActionController
+class IndexController extends \FbPage\Controller\AbstractController
 {
-
-
-    /**
-     * @var \FbPage\Service\Facebook
-     */
-    protected $facebookService;
-
     public function indexAction()
     {
-        $service = $this->getFacebookService();
+        $pageService = $this->getFacebookPageService();
 
-        return new ViewModel();
-    }
+        //$service->
+        //$pageService->setPageid(self::PageID);
+        $events = $pageService->fetchEvents();
+        $posts = $pageService->fetchPosts();
 
-    /**
-     * Getters/setters for DI stuff
-     */
+        $page = $pageService->fetch();
 
-    /**
-     * @return \FbPage\Service\Facebook
-     */
-    public function getFacebookService()
-    {
-        if (!$this->facebookService) {
-            $this->facebookService = $this->serviceLocator->get('fbpage_facebook_service');
-        }
-        return $this->facebookService;
-    }
-
-    public function setFacebookService(Newsletter $facebookService)
-    {
-        $this->facebookService = $facebookService;
-        return $this;
+        return new ViewModel(array("events" => $events, "page" => $page, "posts" => $posts));
     }
 }
+

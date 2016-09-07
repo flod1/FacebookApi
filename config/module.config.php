@@ -10,15 +10,17 @@
 namespace FbPage;
 
 return array(
+    /*
     'service_manager' => array(
         'factories' => array(
             'facebookfactory' => 'FbPage\Factory\Service\FacebookFactory',
         ),
     ),
-
+    */
     'controllers' => array(
         'invokables' => array(
             'dashboard_controller' => 'FbPage\Controller\IndexController',
+            'event_controller' => 'FbPage\Controller\EventController',
         ),
     ),
     'view_manager' => array(
@@ -34,6 +36,16 @@ return array(
                     'route' => '/dashboard',
                     'defaults' => array(
                         'controller' => 'dashboard_controller',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+            'fbpage_events' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route' => '/events',
+                    'defaults' => array(
+                        'controller' => 'event_controller',
                         'action'     => 'index',
                     ),
                 ),

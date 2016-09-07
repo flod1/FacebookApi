@@ -47,8 +47,12 @@ class Module implements AutoloaderProviderInterface
 
         return array(
             'factories' => array(
-                'fbpage_facebook_service'    => 'FbPage\Factory\Service\FacebookFactory',
-                'fbpage_module_options'      => 'FbPage\Factory\Options\ModuleOptions'
+                //Services
+                'fbpage_facebook_service'       => 'FbPage\Factory\Service\FacebookFactory',
+                'fbpage_facebookpage_service'   => 'FbPage\Factory\Service\FacebookPageFactory',
+                //Configurations
+                'facebook_module_options'       => 'FbPage\Factory\Options\FacebookOptions',
+                'facebook_page_options'         => 'FbPage\Factory\Options\FacebookPageOptions'
             )
         );
     }

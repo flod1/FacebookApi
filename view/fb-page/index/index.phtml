@@ -1,0 +1,20 @@
+<br><br><br><br>
+<ul>
+    <li>Info: <? echo var_dump($this->page);?></li>
+</ul>
+
+<ul>
+    <li>Posts: <? echo count($this->posts)?></li>
+</ul>
+
+<ul>
+    <li>Events: <? echo count($this->events)?></li>
+</ul>
+
+<?
+foreach ($this->posts AS $event) {
+    /* @var $event Facebook\GraphNodes\GraphNode */
+    var_dump($event);
+    var_dump($event->getFieldNames());
+}
+?>

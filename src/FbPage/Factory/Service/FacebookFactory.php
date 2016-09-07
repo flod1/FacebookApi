@@ -2,7 +2,7 @@
 
 namespace FbPage\Factory\Service;
 
-use FbPage\Service\Facebook;
+use FbPage\Service\FacebookPage;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
@@ -17,8 +17,9 @@ class FacebookFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $service = new Facebook();
+        $service = new FacebookPage();
         $service->setServiceManager($serviceLocator);
+        //$service->setOptions($serviceLocator->get("facebook_module_options"));
 
         return $service;
     }
