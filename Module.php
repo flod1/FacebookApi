@@ -41,4 +41,15 @@ class Module implements AutoloaderProviderInterface
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
     }
+
+    public function getServiceConfig()
+    {
+
+        return array(
+            'factories' => array(
+                'fbpage_facebook_service'    => 'FbPage\Factory\Service\FacebookFactory',
+                'fbpage_module_options'      => 'FbPage\Factory\Options\ModuleOptions'
+            )
+        );
+    }
 }

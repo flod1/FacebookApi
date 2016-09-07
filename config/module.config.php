@@ -10,5 +10,34 @@
 namespace FbPage;
 
 return array(
+    'service_manager' => array(
+        'factories' => array(
+            'facebookfactory' => 'FbPage\Factory\Service\FacebookFactory',
+        ),
+    ),
 
+    'controllers' => array(
+        'invokables' => array(
+            'dashboard_controller' => 'FbPage\Controller\IndexController',
+        ),
+    ),
+    'view_manager' => array(
+        'template_path_stack' => array(
+            'fb-page' => __DIR__ . '/../view',
+        ),
+    ),
+    'router' => array(
+        'routes' => array(
+            'fbpage_dashboard' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route' => '/dashboard',
+                    'defaults' => array(
+                        'controller' => 'dashboard_controller',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+        ),
+    ),
 );

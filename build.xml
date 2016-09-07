@@ -1,13 +1,14 @@
 <project name="fbpage" default="classmapgenerator" basedir=".">
 
-    <echo msg="Project basedir is ${project.basedir}"/>
-
     <property name="basedir" value="." override="true"/>
+    <property name="vendordir" value="../../vendor" override="true"/>
     <property name="sourcedir" value="${basedir}"/>
+
+    <echo msg="Project basedir is ${vendordir}"/>
 
     <target name="classmapgenerator" description="">
         <exec executable="php" logoutput="true">
-            <arg value="${basedir}/vendor/zendframework/zendframework/bin/classmap_generator.php" />
+            <arg value="${vendordir}/zendframework/zendframework/bin/classmap_generator.php" />
             <arg value="-w" />
             <arg value="-l" />
             <arg value="${sourcedir}/src/FbPage" />
