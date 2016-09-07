@@ -24,12 +24,17 @@
         "php": ">=5.3.3",
         "facebook/php-sdk-v4": "^5.3"
     },
+    "require-dev": {
+        "zendframework/zftool": "0.1.*",
+        "zendframework/zend-log": "2.*",
+        "zendframework/zendframework": "2.*"
+    },
     "autoload": {
         "psr-0": {
             "FbPage": "src/"
         },
         "classmap": [
-            "./"
+            "./Module.php"
         ]
     }
 }

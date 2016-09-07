@@ -1,0 +1,9 @@
+<?php
+return array(
+    'facebook' => array(
+        'appId' => '<YOUR_APP_ID>',
+        'secret' => '<YOUR_APP_SECRET>',
+        'default_graph_version' => 'v2.7',
+        'default_access_token' => '<DEFAULT TOKEN>',
+    )
+);
