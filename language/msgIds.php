@@ -5,3 +5,5 @@
  */
 translate('events');
 translate('event');
+translate('posts');
+translate('post');

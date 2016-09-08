@@ -17,29 +17,19 @@ class Graphhelper extends AbstractHelper
             $string = "";
         }
         elseif(is_object($mixed)){
-            if(is_a($mixed,\Facebook\GraphNodes\GraphCoverPhoto::class)){
-                /* @var $mixed \Facebook\GraphNodes\GraphCoverPhoto */
-                $string = $this->view->coverphotohelper($mixed);
-            }
-            elseif(is_a($mixed,\Facebook\GraphNodes\GraphLocation::class)){
-                /* @var $mixed \Facebook\GraphNodes\GraphLocation */
-                $string = $this->view->locationhelper($mixed);
-            }
-            else if(is_subclass_of($mixed,\Facebook\GraphNodes\GraphNode::class)){
+            if(is_subclass_of($mixed,\Facebook\GraphNodes\GraphNode::class) || is_a($mixed,\Facebook\GraphNodes\GraphNode::class)){
                 /* @var $mixed \Facebook\GraphNodes\GraphNode */
-                $string = $mixed->asJson();
+                $string = $this->view->graphnode($mixed);
                 //var_dump($mixed);
             }
-            else  if(is_a($mixed,\DateTime::class)){
+            else if(is_a($mixed,\DateTime::class)){
                 /* @var $mixed \DateTime */
                 $string = $mixed->format("d.m.y H:i");
             }
-            else{
-
+            else  {
+                var_dump($mixed);die();
 
             }
-
-
         }
         else{
             switch(gettype ( $mixed)){
@@ -54,3 +44,4 @@ class Graphhelper extends AbstractHelper
         return $string;
     }
 }
+

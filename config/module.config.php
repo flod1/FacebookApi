@@ -33,6 +33,7 @@ return array(
             'dashboard_controller' => 'FbPage\Controller\IndexController',
             'event_controller' => 'FbPage\Controller\EventController',
             'post_controller' => 'FbPage\Controller\PostController',
+            'album_controller' => 'FbPage\Controller\AlbumController',
         ),
     ),
     'view_manager' => array(
@@ -44,12 +45,17 @@ return array(
             'fb-page/event/detail' => __DIR__ . '/../view/fb-page/default/detail.phtml',
             'fb-page/post/index' => __DIR__ . '/../view/fb-page/default/table.phtml',
             'fb-page/post/detail' => __DIR__ . '/../view/fb-page/default/detail.phtml',
+            'fb-page/album/index' => __DIR__ . '/../view/fb-page/default/table.phtml',
+            //'fb-page/album/detail' => __DIR__ . '/../view/fb-page/default/detail.phtml',
         ),
     ),
     'view_helpers' => array(
         'invokables'=> array(
-            'graphelper' => 'FbBasic\View\Helper\Graphhelper',
-            'coverphotohelper' => 'FbBasic\View\Helper\Coverphotohelper'
+            'graphhelper' => 'FbBasic\View\Helper\Graphhelper',
+            'graphcoverphoto' => 'FbBasic\View\Helper\GraphCoverPhotoHelper',
+            'graphpicture' => 'FbBasic\View\Helper\GraphPictureHelper',
+            'graphpage' => 'FbBasic\View\Helper\GraphPageHelper',
+            'graphnode' => 'FbBasic\View\Helper\GraphNodeHelper'
 
         )
     ),
@@ -78,18 +84,17 @@ return array(
                 ),
             ),
             'fbpage_event' => array(
-                'type' => 'Regex',
+                'type' => 'Segment',
                 'options' => array(
-                    'regex' => '/{event}/(?<id>[A-F0-9]+)',
+                    'route' => '/{event}/:id',
                     'defaults' => array(
                         'controller' => 'event_controller',
                         'action'     => 'detail',
-                    ),
-                    'spec' => '/event/%id%',
+                    )
                 ),
             ),
             'fbpage_posts' => array(
-                'type' => 'Literal',
+                'type' => 'Segment',
                 'options' => array(
                     'route' => '/{posts}',
                     'defaults' => array(
@@ -99,14 +104,33 @@ return array(
                 ),
             ),
             'fbpage_post' => array(
-                'type' => 'Regex',
+                'type' => 'Segment',
                 'options' => array(
-                    'regex' => '/{post}/(?<id>[A-F_0-9]+)',
+                    'route' => '/{post}/:id',
                     'defaults' => array(
                         'controller' => 'post_controller',
                         'action'     => 'detail',
+                    )
+                ),
+            ),
+            'fbpage_albums' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/{albums}',
+                    'defaults' => array(
+                        'controller' => 'album_controller',
+                        'action'     => 'index',
                     ),
-                    'spec' => '/post/%id%',
+                ),
+            ),
+            'fbpage_album' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/{album}/:id',
+                    'defaults' => array(
+                        'controller' => 'album_controller',
+                        'action'     => 'detail',
+                    )
                 ),
             ),
         ),

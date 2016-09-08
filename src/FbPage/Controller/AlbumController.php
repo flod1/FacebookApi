@@ -12,25 +12,26 @@ namespace FbPage\Controller;
 use Facebook;
 use Zend\View\Model\ViewModel;
 
-class PostController extends AbstractController
+class AlbumController extends AbstractController
 {
     public function indexAction()
     {
         $pageService = $this->getFacebookPageService();
 
-        $posts= $pageService->fetchPosts();
+        $albums = $pageService->fetchAlbums();
 
-        return new ViewModel(array("items"=>$posts,"detailRoute"=>"fbpage_post","headline"=>"Posts"));
+        return new ViewModel(array("items"=>$albums,"detailRoute"=>"fbpage_album","headline"=>"Albums"));
     }
 
     public function detailAction()
     {
-        $id = $this->plugin('params')->fromRoute('id');
+        $albumid = $this->plugin('params')->fromRoute('id');
 
         $pageService = $this->getFacebookPageService();
 
-        $post = $pageService->fetchPost($id);
+        $album = $pageService->fetchAlbum($albumid);
+        $photos = $pageService->fetchPhotosByAlbum($albumid);
 
-        return new ViewModel(array("item"=>$post,"headline"=>"Post"));
+        return new ViewModel(array("item"=>$album,'items'=>$photos,"headline"=>"Album | ".$album->getName()));
     }
 }

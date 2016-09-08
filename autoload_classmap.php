@@ -5,6 +5,7 @@ return array(
     'FbBasic\View\Helper\Graphhelper'            => __DIR__ . '/src/FbBasic/View/Helper/Graphhelper.php',
     'FbBasic\View\Helper\Locationhelper'         => __DIR__ . '/src/FbBasic/View/Helper/Locationhelper.php',
     'FbPage\Controller\AbstractController'       => __DIR__ . '/src/FbPage/Controller/AbstractController.php',
+    'FbPage\Controller\AlbumController'          => __DIR__ . '/src/FbPage/Controller/AlbumController.php',
     'FbPage\Controller\EventController'          => __DIR__ . '/src/FbPage/Controller/EventController.php',
     'FbPage\Controller\IndexController'          => __DIR__ . '/src/FbPage/Controller/IndexController.php',
     'FbPage\Controller\PostController'           => __DIR__ . '/src/FbPage/Controller/PostController.php',

@@ -1,6 +1,13 @@
 Info: <? echo var_dump($this->page);?></li>
 
 <ul>
-    <li>Posts: <a href="<? echo $this->url("fbpage_posts");?>"><? echo count($this->posts)?></a> </li>
+    <li><?echo $this->translate("posts");?>: <a href="<? echo $this->url("fbpage_posts");?>"><? echo count($this->posts)?></a> </li>
     <li><?echo $this->translate("events");?>: <a href="<? echo $this->url("fbpage_events");?>"><? echo count($this->events)?></a> </li>
+    <li><?echo $this->translate("albums");?>: <a href="<? echo $this->url("fbpage_albums");?>"><? echo count($this->albums)?></a> </li>
 </ul>
+
+<?
+
+echo $this->graphhelper($somethink);
+
+?>

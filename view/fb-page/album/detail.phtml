@@ -27,4 +27,23 @@
     </tbody>
 </table>
 
+<div class="row">
+    <?
+    if(count($items)){
+        foreach ($items AS $item) {
+            /* @var $item Facebook\GraphNodes\GraphNode */
+            //var_dump($item);
+            ?>
+            <div class="col-xs-4 col-md-2">
+                <a href="#" class="thumbnail">
+                    <? echo $this->graphhelper($item); ?>
+                </a>
+            </div>
+            <?
+        }
+    }
+    ?>
+</div>
+
+
 

@@ -1,4 +1,6 @@
-<table class="table-bordered">
+<h2><? echo $headline;?></h2>
+
+<table class="table-bordered table table-responsive">
     <thead>
     <tr>
         <?
@@ -28,7 +30,7 @@
             foreach ($fieldnames AS $fieldName) {
                 ?>
                 <td>
-                    <? echo $this->graphelper($item->getField($fieldName)); ?>&nbsp;
+                    <? echo $this->graphhelper($item->getField($fieldName)); ?>&nbsp;
                 </td>
                 <?
             }

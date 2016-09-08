@@ -22,10 +22,16 @@ class IndexController extends \FbPage\Controller\AbstractController
         //$pageService->setPageid(self::PageID);
         $events = $pageService->fetchEvents();
         $posts = $pageService->fetchPosts();
+        $albums = $pageService->fetchAlbums();
+        //$likes = $pageService->fetchGraphNode($pageService->getPageid(), null, null,array("fields"=>"fan_count"));
+        //var_dump($likes);
 
-        $page = $pageService->fetchPageInfo();
+        $page = $pageService->fetchPage();
 
-        return new ViewModel(array("events" => $events, "page" => $page, "posts" => $posts));
+        //$someThink = $pageService->get("126843197387038/?fields=albums.limit(5){name, photos.limit(2){name, picture, tags.limit(2)}},posts.limit(5)")->getGraphNode();
+
+
+        return new ViewModel(array("events" => $events, "page" => $page, "posts" => $posts,  "albums" => $albums,"somethink"=>$someThink));
     }
 }
 

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: SiUser\n"
-"POT-Creation-Date: 2016-09-08 08:07+0200\n"
-"PO-Revision-Date: 2016-09-08 08:07+0200\n"
+"POT-Creation-Date: 2016-09-08 09:32+0200\n"
+"PO-Revision-Date: 2016-09-08 09:33+0200\n"
 "Last-Translator: Florian Degenhardt <florian.degenhardt@studiointeractive."
 "de>\n"
 "Language-Team: \n"
@@ -25,6 +25,14 @@ msgstr "veranstaltungen"
 #: language/msgIds.php:7
 msgid "event"
 msgstr "veranstaltung"
+
+#: language/msgIds.php:8
+msgid "posts"
+msgstr "beiträgen"
+
+#: language/msgIds.php:9
+msgid "post"
+msgstr "beitrag"
 
 #~ msgid "Username"
 #~ msgstr "Benutzername"

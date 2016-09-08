@@ -20,7 +20,7 @@ class EventController extends AbstractController
 
         $events = $pageService->fetchEvents();
 
-        return new ViewModel(array("items"=>$events,"detailRoute"=>"fbpage_event"));
+        return new ViewModel(array("items"=>$events,"detailRoute"=>"fbpage_event","headline"=>"Events"));
     }
 
     public function detailAction()
@@ -31,6 +31,6 @@ class EventController extends AbstractController
 
         $event = $pageService->fetchEvent($eventid);
 
-        return new ViewModel(array("item"=>$event));
+        return new ViewModel(array("item"=>$event,"headline"=>"Event | ".$event->getName()));
     }
 }

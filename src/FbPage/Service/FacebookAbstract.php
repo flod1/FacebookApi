@@ -45,11 +45,13 @@ class FacebookAbstract implements ServiceManagerAwareInterface
     }
 
     /**
-     * @param $endpoint
+     * @param $endpoint string
      * @param $parameters array
      * @return \Facebook\FacebookResponse
      */
     public function fetch($endpoint,$parameters=null){
+
+        //$parameters["metadata"] =1;
 
         if(is_array($parameters)){
             $endpoint.="?";

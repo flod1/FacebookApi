@@ -5,6 +5,7 @@ Created by Florian Degenhardt
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VRMTHV3E4ZD3Y)
 
+If you're interested to help me write me
 
 Introduction
 ------------
@@ -20,7 +21,7 @@ Features / Goals
 * Facebook Graph Api [COMPLETE]
 * Page Service Posts (List/Details) [INCOMPLETE]
 * Page Service Events (List/Details) [INCOMPLETE]
-* Page Service Album (List/Details) [TODO]
+* Page Service Album (List/Details) [INCOMPLETE]
 * Translate Route [COMPLETE]
 * Widgets [TODO]
 
@@ -67,3 +68,14 @@ Installation
 After installing, copy
 `./vendor/flod1/facebook-api/config/facebookapi.global.php.dist` to
 `./config/autoload/facebookapi.global.php` and change the values as desired.
+
+
+Examples for a Facebookpage
+------------
+
+List all Albums 
+`http://domain.dev/albums`
+List all Events
+`http://domain.dev/events`
+List all Posts
+`http://domain.dev/posts`
