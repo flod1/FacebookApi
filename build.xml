@@ -11,7 +11,7 @@
             <arg value="${vendordir}/zendframework/zendframework/bin/classmap_generator.php" />
             <arg value="-w" />
             <arg value="-l" />
-            <arg value="${sourcedir}/src/FbPage" />
+            <arg value="${sourcedir}/src/" />
             <arg value="-o" />
             <arg value="${sourcedir}/autoload_classmap.php" />
         </exec>

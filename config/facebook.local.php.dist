@@ -6,4 +6,7 @@ return array(
         'default_graph_version' => 'v2.7',
         'default_access_token' => '<DEFAULT TOKEN>',
     )
+    'facebookpage' => array(
+        'page_id'=>'<YOUR_PAGE_ID>'
+    )
 );

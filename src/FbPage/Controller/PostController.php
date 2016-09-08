@@ -12,20 +12,25 @@ namespace FbPage\Controller;
 use Facebook;
 use Zend\View\Model\ViewModel;
 
-class IndexController extends \FbPage\Controller\AbstractController
+class PostController extends AbstractController
 {
     public function indexAction()
     {
         $pageService = $this->getFacebookPageService();
 
-        //$service->
-        //$pageService->setPageid(self::PageID);
-        $events = $pageService->fetchEvents();
-        $posts = $pageService->fetchPosts();
+        $posts= $pageService->fetchPosts();
 
-        $page = $pageService->fetchPageInfo();
+        return new ViewModel(array("items"=>$posts,"detailRoute"=>"fbpage_post"));
+    }
 
-        return new ViewModel(array("events" => $events, "page" => $page, "posts" => $posts));
+    public function detailAction()
+    {
+        $eventid = $this->plugin('params')->fromRoute('id');
+
+        $pageService = $this->getFacebookPageService();
+
+        $event = $pageService->fetchEvent($eventid);
+
+        return new ViewModel(array("item"=>$event));
     }
 }
-

@@ -24,6 +24,7 @@ class Module implements AutoloaderProviderInterface
             ),
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
+                    'FbBasic'=> __DIR__ . '/src/FbBasic',
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
                 ),
             ),
@@ -39,7 +40,15 @@ class Module implements AutoloaderProviderInterface
     {
         $eventManager = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
+        $eventManager->attach('route', array($this, 'onPreRoute'), 100);
         $moduleRouteListener->attach($eventManager);
+    }
+
+    // Translaton routing
+    public function onPreRoute($e){
+        $application    = $e->getApplication();
+        $serviceManager = $application->getServiceManager();
+        $serviceManager->get('router')->setTranslator($serviceManager->get('translator'));
     }
 
     public function getServiceConfig()

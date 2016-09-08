@@ -44,6 +44,24 @@ class FacebookAbstract implements ServiceManagerAwareInterface
         return $this->fb->get($endpoint,$this->fb->getDefaultAccessToken());
     }
 
+    /**
+     * @param $endpoint
+     * @param $parameters array
+     * @return \Facebook\FacebookResponse
+     */
+    public function fetch($endpoint,$parameters=null){
+
+        if(is_array($parameters)){
+            $endpoint.="?";
+            foreach($parameters AS $key => $value){
+                $endpoint.= $key."=".$value."&";
+            }
+        }
+        $endpoint = trim($endpoint, "&");
+
+        return $this->get($endpoint);
+    }
+
 
     public function getServiceManager()
     {

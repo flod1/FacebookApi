@@ -42,34 +42,48 @@ class FacebookPage extends FacebookAbstract implements ServiceManagerAwareInterf
         $this->facebookpageoptions = $facebookpageoptions;
     }
 
-    public function fetchEvents()
+    /**
+     * @param string $fields
+     * @param int $limit
+     * @return array
+     */
+    public function fetchEvents($fields="description,cover,place,name,start_time",$limit=100)
     {
+        $response = $this->fetch("/" . $this->getPageid() . '/events',array("fields"=>$fields,"limit"=>$limit));
 
-        $response = $this->get("/" . $this->getPageid() . '/events?fields=description,cover,place,name,start_time');
-
-        //$response = $request->execute();
         $graphEvents = $response->getGraphEdge("GraphEvent")->all();
 
         return $graphEvents;
-        //Debug::dump($graphEvent->);die();
-        //Debug::dump($this->getOptions());die();
+    }
+    /**
+     * @param string $fields
+     * @param int $limit
+     * @return array
+     */
+    public function fetchEvent($eventid)
+    {
+        $response = $this->fetch("/" . $eventid);
+
+        $graphEvent = $response->getGraphEvent();
+
+        //Debug::dump($graphEvent);die();
+
+        return $graphEvent;
     }
 
     public function fetchPosts()
     {
-
         $response = $this->get("/" . $this->getPageid() . '/posts');
 
         $graphPosts = $response->getGraphEdge()->all();
 
         return $graphPosts;
-        //Debug::dump($this->getOptions());die();
     }
 
     /**
      * @return \Facebook\GraphNodes\GraphPage
      */
-    public function fetch()
+    public function fetchPageInfo()
     {
 
         $response = $this->get("/" . $this->getPageid());

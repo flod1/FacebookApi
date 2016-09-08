@@ -9,12 +9,8 @@
 
 namespace FbPage\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
 use Facebook;
-use Facebook\FacebookRequest;
-use Zend\Debug\Debug;
-use Zend\Session\Container;
+use Zend\View\Model\ViewModel;
 
 class EventController extends AbstractController
 {
@@ -24,6 +20,17 @@ class EventController extends AbstractController
 
         $events = $pageService->fetchEvents();
 
-        return new ViewModel(array("events"=>$events));
+        return new ViewModel(array("items"=>$events,"detailRoute"=>"fbpage_event"));
+    }
+
+    public function detailAction()
+    {
+        $eventid = $this->plugin('params')->fromRoute('id');
+
+        $pageService = $this->getFacebookPageService();
+
+        $event = $pageService->fetchEvent($eventid);
+
+        return new ViewModel(array("item"=>$event));
     }
 }

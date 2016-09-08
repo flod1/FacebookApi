@@ -1,20 +1,6 @@
-<br><br><br><br>
-<ul>
-    <li>Info: <? echo var_dump($this->page);?></li>
-</ul>
+Info: <? echo var_dump($this->page);?></li>
 
 <ul>
-    <li>Posts: <? echo count($this->posts)?></li>
+    <li>Posts: <a href="<? echo $this->url("fbpage_posts");?>"><? echo count($this->posts)?></a> </li>
+    <li><?echo $this->translate("events");?>: <a href="<? echo $this->url("fbpage_events");?>"><? echo count($this->events)?></a> </li>
 </ul>
-
-<ul>
-    <li>Events: <? echo count($this->events)?></li>
-</ul>
-
-<?
-foreach ($this->posts AS $event) {
-    /* @var $event Facebook\GraphNodes\GraphNode */
-    var_dump($event);
-    var_dump($event->getFieldNames());
-}
-?>

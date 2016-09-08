@@ -1,0 +1,46 @@
+<table class="table-bordered">
+    <thead>
+    <tr>
+        <?
+        foreach ($this->items AS $item) {
+            //var_dump($item->getFieldNames());
+            /* @var $item Facebook\GraphNodes\GraphNode */
+            $fieldnames = $item->getFieldNames();
+            foreach ($fieldnames AS $fieldName) {
+                ?>
+                <td><? echo $fieldName; ?></td>
+                <?
+            }
+            break;
+        }
+        ?>
+        <td>Detail</td>
+    </tr>
+
+    </thead>
+    <tbody>
+    <?
+    foreach ($this->items AS $item) {
+        /* @var $item Facebook\GraphNodes\GraphNode */
+        ?>
+        <tr>
+            <?
+            foreach ($fieldnames AS $fieldName) {
+                ?>
+                <td>
+                    <? echo $this->graphelper($item->getField($fieldName)); ?>&nbsp;
+                </td>
+                <?
+            }
+            ?>
+            <td>
+                <a href="<? echo $this->url($detailRoute, array("id" => $item->getField("id"))); ?>">More</a>
+            </td>
+        </tr>
+
+        <?
+        //var_dump($item);
+    }
+    ?>
+    </tbody>
+</table>

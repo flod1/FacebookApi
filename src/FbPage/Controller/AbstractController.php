@@ -9,12 +9,9 @@
 
 namespace FbPage\Controller;
 
+use Facebook;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Facebook;
-use Facebook\FacebookRequest;
-use Zend\Debug\Debug;
-use Zend\Session\Container;
 
 class AbstractController extends AbstractActionController
 {
@@ -22,22 +19,6 @@ class AbstractController extends AbstractActionController
      * @var \FbPage\Service\FacebookPage
      */
     protected $facebookpageService;
-
-    const PageID = "126843197387038";
-
-    public function indexAction()
-    {
-        $pageService = $this->getFacebookPageService();
-
-        //$service->
-        $pageService->setPageid(self::PageID);
-        $events = $pageService->fetchEvents();
-        $posts = $pageService->fetchPosts();
-
-        $page = $pageService->fetch();
-
-        return new ViewModel(array("events"=>$events,"page"=>$page,"posts"=>$posts));
-    }
 
     /**
      * Getters/setters for DI stuff
