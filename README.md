@@ -10,6 +10,14 @@ FacebookApi is a module for Zend Framework 2.
 Example You can easy fill your Website Page content from you Facebook Page.
 Feeds, Post, Picture, Album, Events, etc
 
+Features / Goals
+----------------
+
+* Facebook Graph Api [COMPLETE]
+* Page Service Posts (List/Details) [INCOMPLETE]
+* Page Service Events (List/Details) [INCOMPLETE]
+* Page Service Album (List/Details) [TODO]
+
 Installation
 ------------
 
