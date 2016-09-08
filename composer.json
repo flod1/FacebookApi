@@ -1,11 +1,13 @@
 {
     "name": "flod1/facebook-api",
-    "description": "",
+    "description": "FacebookApi Module t",
     "type": "library",
     "license": "",
     "keywords": [
         "zf2",
-        "facebook"
+        "facebook",
+        "graph api",
+        "api"
     ],
     "homepage": "https://github.com/flod1/FacebookApi",
     "authors": [

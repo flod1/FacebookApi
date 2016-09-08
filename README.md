@@ -3,12 +3,16 @@ FacebookApi
 
 Created by Florian Degenhardt
 
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VRMTHV3E4ZD3Y)
+
+
 Introduction
 ------------
 
 FacebookApi is a module for Zend Framework 2.
 Example You can easy fill your Website Page content from you Facebook Page.
 Feeds, Post, Picture, Album, Events, etc
+
 
 Features / Goals
 ----------------
@@ -17,6 +21,8 @@ Features / Goals
 * Page Service Posts (List/Details) [INCOMPLETE]
 * Page Service Events (List/Details) [INCOMPLETE]
 * Page Service Album (List/Details) [TODO]
+* Translate Route [COMPLETE]
+* Widgets [TODO]
 
 Installation
 ------------
