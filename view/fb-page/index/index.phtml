@@ -5,3 +5,43 @@ Info: <? echo var_dump($this->page);?></li>
     <li><?echo $this->translate("events");?>: <a href="<? echo $this->url("fbpage_events");?>"><? echo count($this->events)?></a> </li>
     <li><?echo $this->translate("albums");?>: <a href="<? echo $this->url("fbpage_albums");?>"><? echo count($this->albums)?></a> </li>
 </ul>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">Alben</div>
+    <div class="panel-body">
+        <?
+        /**
+         * @var $albumWidget \FbPage\View\Helper\AlbumWidget
+         */
+        $albumWidget = $this->albumWidget();
+        echo $albumWidget->fetchAll()->setLimit(10)->setTemplate("widget/default/table.phtml");
+        ?>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Events</div>
+    <div class="panel-body">
+        <?
+        /**
+         * @var $eventWidget \FbPage\View\Helper\EventWidget
+         */
+        $eventWidget = $this->eventWidget();
+        echo $eventWidget->fetchAll()->setLimit(10)->setTemplate("widget/default/table.phtml");
+        ?>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">1 Event</div>
+    <div class="panel-body">
+        <?
+        /**
+         * @var $eventWidget \FbPage\View\Helper\EventWidget
+         */
+        $eventWidget = $this->eventWidget();
+        echo $eventWidget->setFields("id,name,description,attending_count")->fetch("1042485019138787")->setTemplate("widget/default/detail.phtml");
+        ?>
+    </div>
+</div>

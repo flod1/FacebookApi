@@ -56,9 +56,9 @@ class FacebookPage extends FacebookAbstract implements ServiceManagerAwareInterf
      * @param int $eventid
      * @return \Facebook\GraphNodes\GraphEvent
      */
-    public function fetchEvent($eventid)
+    public function fetchEvent($eventid,$fields="id,name,description")
     {
-        $response = $this->fetchGraphNode($eventid);
+        $response = $this->fetchGraphNode($eventid,array("fields"=>$fields));
 
         return $response->getGraphEvent();
     }

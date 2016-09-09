@@ -57,7 +57,11 @@ return array(
             'graphpage' => 'FbBasic\View\Helper\GraphPageHelper',
             'graphnode' => 'FbBasic\View\Helper\GraphNodeHelper'
 
-        )
+        ),
+        'factories' => [
+            'albumWidget' => 'FbPage\Factory\View\Helper\AlbumWidgetFactory',
+            'eventWidget' => 'FbPage\Factory\View\Helper\EventWidgetFactory'
+        ]
     ),
     'router' => array(
         'router_class' => 'Zend\Mvc\Router\Http\TranslatorAwareTreeRouteStack',

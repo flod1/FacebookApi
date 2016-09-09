@@ -27,19 +27,18 @@ class Graphhelper extends AbstractHelper
                 $string = $mixed->format("d.m.y H:i");
             }
             else  {
-                var_dump($mixed);die();
+                //var_dump($mixed);die();
 
             }
         }
         else{
             switch(gettype ( $mixed)){
                 case "string":$string =  $mixed; break;
+                case "integer":$string =  $mixed; break;
                 default:var_dump($mixed);die();
             }
 
         }
-
-
 
         return $string;
     }

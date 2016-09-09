@@ -1,0 +1,46 @@
+<? if(count($this->items)):?>
+<table class="table-bordered table table-responsive">
+    <thead>
+    <tr>
+        <?
+        foreach ($this->items AS $item) {
+            //var_dump($item->getFieldNames());
+            /* @var $item Facebook\GraphNodes\GraphNode */
+            $fieldnames = $item->getFieldNames();
+            foreach ($fieldnames AS $fieldName) {
+                ?>
+                <td><? echo $fieldName; ?></td>
+                <?
+            }
+            break;
+        }
+        ?>
+    </tr>
+
+    </thead>
+    <tbody>
+    <?
+    foreach ($this->items AS $item) {
+        /* @var $item Facebook\GraphNodes\GraphNode */
+        ?>
+        <tr>
+            <?
+            foreach ($fieldnames AS $fieldName) {
+                ?>
+                <td>
+                    <? echo $this->graphhelper($item->getField($fieldName)); ?>&nbsp;
+                </td>
+                <?
+            }
+            ?>
+        </tr>
+
+        <?
+        //var_dump($item);
+    }
+    ?>
+    </tbody>
+</table>
+<? else:?>
+    No Items Found
+<? endif;?>
