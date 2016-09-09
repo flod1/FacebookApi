@@ -23,13 +23,12 @@
         "process-timeout": 3000
     },
     "require": {
-        "php": ">=5.3.3",
+        "php": ">=5.5",
         "facebook/php-sdk-v4": "^5.3"
     },
     "require-dev": {
         "zendframework/zftool": "0.1.*",
         "zendframework/zend-log": "2.*",
-        "zendframework/zendframework": "2.*"
     },
     "autoload": {
         "psr-0": {
