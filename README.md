@@ -74,9 +74,19 @@ After installing, copy
 Examples for a Facebookpage
 ------------
 
+Overview Page Content 
+* `http://domain.dev/dashboard`
 List all Albums 
-*`http://domain.dev/albums`
+* `http://domain.dev/albums`
 List all Events
 * `http://domain.dev/events`
 List all Posts
 * `http://domain.dev/posts`
+
+### Widget
+
+albumwidget - Fetch and Display 10 Albums with the default Table Template
+
+```php
+<?php echo $albumWidget->fetchAll()->setLimit(10)->setTemplate("widget/default/table.phtml");
+```
