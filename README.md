@@ -5,6 +5,7 @@ Created by Florian Degenhardt
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VRMTHV3E4ZD3Y)
 
+Please give me Feedback and help me to optimized and extend the code.
 If you're interested to help me write me
 
 Introduction
@@ -74,8 +75,8 @@ Examples for a Facebookpage
 ------------
 
 List all Albums 
-`http://domain.dev/albums`
+*`http://domain.dev/albums`
 List all Events
-`http://domain.dev/events`
+* `http://domain.dev/events`
 List all Posts
-`http://domain.dev/posts`
+* `http://domain.dev/posts`
