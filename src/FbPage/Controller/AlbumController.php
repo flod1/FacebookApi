@@ -10,15 +10,28 @@
 namespace FbPage\Controller;
 
 use Facebook;
+use FbPage\Service\FacebookPage;
+use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class AlbumController extends AbstractController
+class AlbumController extends BaseController
 {
+    /**
+     * @var FacebookPage
+     */
+    protected $facebookPageService;
+
+
+    public function __construct(FacebookPage $facebookPageService)
+    {
+        $this->facebookPageService = $facebookPageService;
+    }
+
     public function indexAction()
     {
-        $pageService = $this->getFacebookPageService();
+        //$pageService = $this->getFacebookPageService();
 
-        $albums = $pageService->fetchAlbums();
+        $albums = $this->facebookPageService->fetchAlbums();
 
         return new ViewModel(array("items"=>$albums,"detailRoute"=>"fbpage_album","headline"=>"Albums"));
     }

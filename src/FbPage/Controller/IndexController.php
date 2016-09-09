@@ -12,7 +12,7 @@ namespace FbPage\Controller;
 use Facebook;
 use Zend\View\Model\ViewModel;
 
-class IndexController extends \FbPage\Controller\AbstractController
+class IndexController extends BaseController
 {
     public function indexAction()
     {

@@ -41,7 +41,7 @@ Info: <? echo var_dump($this->page);?></li>
          * @var $eventWidget \FbPage\View\Helper\EventWidget
          */
         $eventWidget = $this->eventWidget();
-        echo $eventWidget->setFields("id,name,description,attending_count")->fetch("1042485019138787")->setTemplate("widget/default/detail.phtml");
+        echo $eventWidget->setFields("id,name,description,attending_count,start_time")->fetch("1042485019138787")->setTemplate("widget/default/detail.phtml");
         ?>
     </div>
 </div>

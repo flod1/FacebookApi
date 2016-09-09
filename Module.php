@@ -9,28 +9,11 @@
 namespace FacebookApi;
 
 
-use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 
-class Module implements AutoloaderProviderInterface
+class Module
 {
-
-    public function getAutoloaderConfig()
-    {
-        return array(
-            'Zend\Loader\ClassMapAutoloader' => array(
-                __DIR__ . '/autoload_classmap.php',
-            ),
-            'Zend\Loader\StandardAutoloader' => array(
-                'namespaces' => array(
-                    'FbBasic'=> __DIR__ . '/src/FbBasic',
-                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
-                ),
-            ),
-        );
-    }
-
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
@@ -49,20 +32,5 @@ class Module implements AutoloaderProviderInterface
         $application    = $e->getApplication();
         $serviceManager = $application->getServiceManager();
         $serviceManager->get('router')->setTranslator($serviceManager->get('translator'));
-    }
-
-    public function getServiceConfig()
-    {
-
-        return array(
-            'factories' => array(
-                //Services
-                'fbpage_facebook_service'       => 'FbPage\Factory\Service\FacebookFactory',
-                'fbpage_facebookpage_service'   => 'FbPage\Factory\Service\FacebookPageFactory',
-                //Configurations
-                'facebook_module_options'       => 'FbPage\Factory\Options\FacebookOptions',
-                'facebook_page_options'         => 'FbPage\Factory\Options\FacebookPageOptions'
-            )
-        );
     }
 }

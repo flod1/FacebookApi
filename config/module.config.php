@@ -25,15 +25,28 @@ return array(
             'translator' => 'MvcTranslator',
         ),
         'factories' => array(
+            //Navigtion
             'navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
-        ),
+            //Services
+            'fbpage_facebook_service'       => 'FbPage\Factory\Service\FacebookFactory',
+            'fbpage_facebookpage_service'   => 'FbPage\Factory\Service\FacebookPageFactory',
+            //Configurations
+            'facebook_module_options'       => 'FbPage\Factory\Options\FacebookOptions',
+            'facebook_page_options'         => 'FbPage\Factory\Options\FacebookPageOptions'
+        )
     ),
     'controllers' => array(
+        'abstract_factories' => array(
+            'FbPage\Factory\Controller\CommonControllerFactory'
+        ),
+        'factories' => array(
+            'album_controller' => 'FbPage\Factory\Controller\AlbumControllerFactory'
+        ),
         'invokables' => array(
             'dashboard_controller' => 'FbPage\Controller\IndexController',
             'event_controller' => 'FbPage\Controller\EventController',
             'post_controller' => 'FbPage\Controller\PostController',
-            'album_controller' => 'FbPage\Controller\AlbumController',
+            //'album_controller' => 'FbPage\Controller\AlbumController',
         ),
     ),
     'view_manager' => array(

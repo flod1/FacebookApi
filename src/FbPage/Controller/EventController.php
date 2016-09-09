@@ -12,7 +12,7 @@ namespace FbPage\Controller;
 use Facebook;
 use Zend\View\Model\ViewModel;
 
-class EventController extends AbstractController
+class EventController extends BaseController
 {
     public function indexAction()
     {

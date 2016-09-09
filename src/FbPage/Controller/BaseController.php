@@ -13,7 +13,7 @@ use Facebook;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class AbstractController extends AbstractActionController
+class BaseController extends AbstractActionController
 {
     /**
      * @var \FbPage\Service\FacebookPage
