@@ -45,13 +45,13 @@ class FacebookAbstract implements ServiceManagerAwareInterface
     }
 
     /**
-     * @param $endpoint string
-     * @param $parameters array
+     * @param $id
+     * @param null $parameters
      * @return \Facebook\FacebookResponse
      */
-    public function fetch($endpoint,$parameters=null){
-
-        //$parameters["metadata"] =1;
+    public function fetchGraphNode($id,$parameters=null)
+    {
+        $endpoint = "/".$id;
 
         if(is_array($parameters)){
             $endpoint.="?";
@@ -62,8 +62,36 @@ class FacebookAbstract implements ServiceManagerAwareInterface
         $endpoint = trim($endpoint, "&");
 
         return $this->get($endpoint);
+
     }
 
+    /**
+     * @param $id int
+     * @param null $action string
+     * @param null $subclassname
+     * @param null $parameters
+     * @return \Facebook\GraphNodes\GraphEdge
+     */
+    public function fetchGraphEdge($id,$action=null,$subclassname=null,$parameters=null)
+    {
+        $endpoint = "/".$id;
+        if(!is_null($action)){
+            $endpoint .= "/".$action;
+        }
+
+        if(is_array($parameters)){
+            $endpoint.="?";
+            foreach($parameters AS $key => $value){
+                $endpoint.= $key."=".$value."&";
+            }
+        }
+        $endpoint = trim($endpoint, "&");
+
+        $response = $this->get($endpoint);
+
+        return $response->getGraphEdge($subclassname);
+
+    }
 
     public function getServiceManager()
     {

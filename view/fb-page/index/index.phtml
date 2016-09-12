@@ -1,3 +1,42 @@
+
+
+<?php
+
+/**
+* @var $pageWidget \FbPage\View\Helper\PageWidget
+*/
+$pageWidget = $this->pageWidget();
+?>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Page Infos</div>
+    <div class="panel-body">
+        <?
+        echo $pageWidget->fetchPageInfo();
+        ?>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Events by Page</div>
+    <div class="panel-body">
+        <?
+        echo $pageWidget->fetchAllEvents();
+        ?>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Milestones by Page</div>
+    <div class="panel-body">
+        <?
+        echo $pageWidget->fetchAllMilestones();
+        ?>
+    </div>
+</div>
+
+
+
 Info: <? echo var_dump($this->page);?></li>
 
 <ul>
@@ -8,7 +47,7 @@ Info: <? echo var_dump($this->page);?></li>
 
 
 <div class="panel panel-default">
-    <div class="panel-heading">Alben</div>
+    <div class="panel-heading">Albums by Page</div>
     <div class="panel-body">
         <?
         /**
@@ -21,7 +60,7 @@ Info: <? echo var_dump($this->page);?></li>
 </div>
 
 <div class="panel panel-default">
-    <div class="panel-heading">Events</div>
+    <div class="panel-heading">Events by Page</div>
     <div class="panel-body">
         <?
         /**

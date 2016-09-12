@@ -11,7 +11,6 @@ class BaseWidget extends BasicWidget
      */
     protected $facebookPageService;
 
-
     public function __construct(FacebookPage $facebookPageService)
     {
         $this->facebookPageService = $facebookPageService;

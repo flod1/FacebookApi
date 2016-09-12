@@ -10,7 +10,7 @@ namespace FbBasic\View\Helper;
 use Zend\View\Helper\AbstractHelper;
 use Facebook\GraphNodes;
 
-class GraphLccationHelper extends AbstractHelper
+class GraphLocationHelper extends AbstractHelper
 {
     public function __invoke($mixed)
     {

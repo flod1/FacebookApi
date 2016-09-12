@@ -33,5 +33,9 @@ class IndexController extends BaseController
 
         return new ViewModel(array("events" => $events, "page" => $page, "posts" => $posts,  "albums" => $albums));
     }
+
+    public function widgetsAction(){
+
+    }
 }
 

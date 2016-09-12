@@ -46,12 +46,54 @@ class FacebookPage extends FacebookAbstract implements ServiceManagerAwareInterf
     /**
      * @param string $fields
      * @param int $limit
-     * @return array
+     * @return \Facebook\GraphNodes\GraphEdge
      */
     public function fetchEvents($fields="description,cover,place,name,start_time",$limit=100)
     {
         return $this->fetchGraphEdge($this->getPageid(),'events',"GraphEvent",array("fields"=>$fields,"limit"=>$limit));
     }
+    /**
+     * @param string $fields
+     * @param int $limit
+     * @return \Facebook\GraphNodes\GraphEdge
+     */
+    public function fetchMilestones($fields="title,description,start_time",$limit=100)
+    {
+        return $this->fetchGraphEdge($this->getPageid(),'milestones',null,array("fields"=>$fields,"limit"=>$limit));
+    }
+
+    /**
+     * @param int $albumid
+     * @param string $fields
+     * @param int $limit
+     * @return array of \Facebook\GraphNodes\GraphNodes
+     */
+    public function fetchPhotosByAlbum($albumid,$fields="id,picture",$limit=100)
+    {
+        return $this->fetchGraphEdge($albumid,'photos',null,array("fields"=>$fields,"limit"=>$limit));
+    }
+
+    /**
+     * @param string $fields
+     * @param int $limit
+     * @return \Facebook\GraphNodes\GraphEdge
+     */
+    public function fetchPosts($fields="",$limit=100)
+    {
+        return $this->fetchGraphEdge($this->getPageid(),'posts',null,array("fields"=>$fields,"limit"=>$limit));
+
+    }
+
+    /**
+     * @param string $fields
+     * @param int $limit
+     * @return \Facebook\GraphNodes\GraphEdge
+     */
+    public function fetchAlbums($fields="id,name,picture,cover_photo",$limit=100)
+    {
+        return $this->fetchGraphEdge($this->getPageid(),'albums','GraphAlbum',array("fields"=>$fields,"limit"=>$limit));
+    }
+
     /**
      * @param int $eventid
      * @return \Facebook\GraphNodes\GraphEvent
@@ -78,83 +120,20 @@ class FacebookPage extends FacebookAbstract implements ServiceManagerAwareInterf
      */
     public function fetchAlbum($albumid)
     {
-        $response = $this->fetch("/" . $albumid);
+        $response = $this->fetchGraphNode($albumid);
 
         return $response->getGraphAlbum();
-    }
-
-    /**
-     * @param int $albumid
-     * @param string $fields
-     * @param int $limit
-     * @return array of \Facebook\GraphNodes\GraphNodes
-     */
-    public function fetchPhotosByAlbum($albumid,$fields="id,picture",$limit=100)
-    {
-        $response = $this->fetch("/" . $albumid.'/photos',array("fields"=>$fields,"limit"=>$limit));
-
-        return $response->getGraphEdge()->all();
-    }
-
-    /**
-     * @param string $fields
-     * @param int $limit
-     * @return \Facebook\GraphNodes\GraphEdge
-     */
-    public function fetchPosts($fields="",$limit=100)
-    {
-        return $this->fetchGraphEdge($this->getPageid(),'posts',null,array("fields"=>$fields,"limit"=>$limit));
-
-    }
-
-    /**
-     * @param string $fields
-     * @param int $limit
-     * @return \Facebook\GraphNodes\GraphEdge
-     */
-    public function fetchAlbums($fields="id,name,picture,cover_photo",$limit=100)
-    {
-        return $this->fetchGraphEdge($this->getPageid(),'albums','GraphAlbum',array("fields"=>$fields,"limit"=>$limit));
     }
 
     /**
      * @param string $fields
      * @return \Facebook\GraphNodes\GraphPage
      */
-    public function fetchPage($fields="id,name,fan_count")
+    public function fetchPage($fields="id,name,about,fan_count,cover,picture")
     {
         $response = $this->fetchGraphNode($this->getPageid(),array("fields"=>$fields));
 
         return $response->getGraphPage();
-    }
-
-    /**
-     * @param $id
-     * @param null $parameters
-     * @return \Facebook\FacebookResponse
-     */
-    public function fetchGraphNode($id,$parameters=null)
-    {
-        $endpoint = "/".$id;
-
-        return $this->fetch($endpoint,$parameters);
-
-    }
-    /**
-     * @param $id int
-     * @param null $action string
-     * @return \Facebook\GraphNodes\GraphEdge
-     */
-    public function fetchGraphEdge($id,$action=null,$subclassname=null,$parameters=null)
-    {
-        $endpoint = "/".$id;
-        if(!is_null($action)){
-            $endpoint .= "/".$action;
-        }
-        $response = $this->fetch($endpoint,$parameters);
-
-        return $response->getGraphEdge($subclassname);
-
     }
 
     /**

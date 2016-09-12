@@ -24,7 +24,9 @@ Features / Goals
 * Page Service Events (List/Details) [INCOMPLETE]
 * Page Service Album (List/Details) [INCOMPLETE]
 * Translate Route [COMPLETE]
-* Widgets [TODO]
+* Widgets 
+* - Events/Event [TEST]
+* - Albums/Album [TEST]
 
 Installation
 ------------

@@ -14,7 +14,7 @@ use FbPage\Service\FacebookPage;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class AlbumController extends BaseController
+class AlbumController extends AbstractActionController
 {
     /**
      * @var FacebookPage
@@ -40,10 +40,8 @@ class AlbumController extends BaseController
     {
         $albumid = $this->plugin('params')->fromRoute('id');
 
-        $pageService = $this->getFacebookPageService();
-
-        $album = $pageService->fetchAlbum($albumid);
-        $photos = $pageService->fetchPhotosByAlbum($albumid);
+        $album = $this->facebookPageService->fetchAlbum($albumid);
+        $photos = $this->facebookPageService->fetchPhotosByAlbum($albumid);
 
         return new ViewModel(array("item"=>$album,'items'=>$photos,"headline"=>"Album | ".$album->getName()));
     }

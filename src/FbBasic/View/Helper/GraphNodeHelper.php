@@ -36,15 +36,15 @@ class GraphNodeHelper extends AbstractHelper
         }
         else if($mixed->getField("picture")){
             $string = '<img src="'.$mixed->getField("picture").'" class="img-responsive">';
-            //var_dump($mixed);die();
+
 
         }
         else {
             //todo better
             $string = $mixed->asJson();
-
         }
 
+        //var_dump($mixed);
         return $string;
     }
 }

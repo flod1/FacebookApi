@@ -43,6 +43,7 @@ return array(
             'album_controller' => 'FbPage\Factory\Controller\AlbumControllerFactory'
         ),
         'invokables' => array(
+            'example_controller' => 'FbBasic\Controller\ExampleController',
             'dashboard_controller' => 'FbPage\Controller\IndexController',
             'event_controller' => 'FbPage\Controller\EventController',
             'post_controller' => 'FbPage\Controller\PostController',
@@ -68,10 +69,12 @@ return array(
             'graphcoverphoto' => 'FbBasic\View\Helper\GraphCoverPhotoHelper',
             'graphpicture' => 'FbBasic\View\Helper\GraphPictureHelper',
             'graphpage' => 'FbBasic\View\Helper\GraphPageHelper',
+            'graphlocation' => 'FbBasic\View\Helper\GraphLocationHelper',
             'graphnode' => 'FbBasic\View\Helper\GraphNodeHelper'
 
         ),
         'factories' => [
+            'pageWidget' => 'FbPage\Factory\View\Helper\PageWidgetFactory',
             'albumWidget' => 'FbPage\Factory\View\Helper\AlbumWidgetFactory',
             'eventWidget' => 'FbPage\Factory\View\Helper\EventWidgetFactory'
         ]
@@ -87,6 +90,16 @@ return array(
                     'defaults' => array(
                         'controller' => 'dashboard_controller',
                         'action'     => 'index',
+                    ),
+                ),
+            ),
+            'fbpage_examples' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/examples',
+                    'defaults' => array(
+                        'controller' => 'example_controller',
+                        'action'     => 'widgets',
                     ),
                 ),
             ),
@@ -158,6 +171,10 @@ return array(
             array(
                 'label' => 'Dashboard',
                 'route' => 'fbpage_dashboard',
+            ),
+            array(
+                'label' => 'Examples',
+                'route' => 'fbpage_examples',
             ),
             array(
                 'label' => 'Albums',

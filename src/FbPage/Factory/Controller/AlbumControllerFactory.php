@@ -11,17 +11,19 @@ namespace FbPage\Factory\Controller;
 
 
 use FbPage\Controller\AlbumController;
-use Zend\Mvc\Controller\ControllerManager;
+use Zend\ServiceManager\FactoryInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
-class AlbumControllerFactory extends AbstractControllerFactory
+class AlbumControllerFactory implements FactoryInterface
 {
-    /**
-     * @param ControllerManager $controllerManager
-     * @return AlbumController
-     */
-    public function __invoke(ControllerManager $controllerManager)
+    public function createService(ServiceLocatorInterface $controllerManager)
     {
-        // inject it to the constructor of the controller
-        return new AlbumController($this->getFacebookService($controllerManager));
+        $serviceLocator = $controllerManager->getServiceLocator();
+        // get some dependency
+        $facebookpageService = $serviceLocator->get('fbpage_facebookpage_service');
+
+        $controller = new AlbumController($facebookpageService);
+
+        return $controller;
     }
 }

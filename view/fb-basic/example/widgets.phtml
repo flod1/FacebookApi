@@ -1,0 +1,40 @@
+<div class="row">
+    <div role="main" class="col-md-9">
+
+        <?
+        foreach($this->examples AS $key => $example){
+            ?>
+            <a class="anchorjs-link " href="#<?php echo $example['title']?>"
+               aria-label="Anchor link for: <?php echo $example['title']?>"></a>
+            <h2 id="<?php echo $example['title']?>" class="page-header"><?php echo $example['title']?></h2>
+
+            <pre class="pre-scrollable">
+                <code class="language-php">
+                    <?php echo $example['code']?>
+                </code>
+            </pre>
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading"><?php echo $example['describtion']?></div>
+                    <?php echo $example['sample']?>
+            </div>
+            <?
+        }
+
+        ?>
+    </div>
+    <div role="complementary" class="col-md-3">
+        <nav class="bs-docs-sidebar hidden-print hidden-sm hidden-xs affix">
+            <ul class="nav bs-docs-sidenav">
+                <?
+                foreach($this->examples AS $key => $example) {
+                    ?>
+                    <li><a href="#<?php echo $example['title'] ?>"><?php echo $example['title'] ?></a></li><?
+                }
+                ?>
+
+            </ul>
+            <a class="back-to-top" href="#top"> Back to top </a>
+        </nav>
+    </div>
+</div>
