@@ -21,4 +21,11 @@ class BaseWidget extends BasicWidget
     {
         return $this;//
     }
+
+    public function count()
+    {
+        if($this->results){
+            return $this->results->count();
+        }
+    }
 }

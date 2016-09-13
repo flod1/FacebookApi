@@ -5,27 +5,33 @@ class PageWidget extends BaseWidget
 {
     public function fetchPageInfo()
     {
-        $this->result = $this->facebookPageService->fetchPage();
+        $this->results = $this->facebookPageService->fetchPage();
 
         return $this;
     }
-    public function fetchAllEvents()
+    public function fetchAllEvents($fields=null,$limit=null)
     {
-        $this->results = $this->facebookPageService->fetchEvents($this->getFields(), $this->getLimit());
+        $this->results = $this->facebookPageService->fetchEvents($fields, $limit);
+
+        return $this;
+    }
+    public function fetchAllPosts($fields=null,$limit=null)
+    {
+        $this->results = $this->facebookPageService->fetchPosts($fields, $limit);
 
         return $this;
     }
 
-    public function fetchAllMilestones()
+    public function fetchAllMilestones($fields=null,$limit=null)
     {
-        $this->results = $this->facebookPageService->fetchMilestones($this->getFields(), $this->getLimit());
+        $this->results = $this->facebookPageService->fetchMilestones($fields, $limit);
 
         return $this;
     }
 
-    public function fetchAllAlbums()
+    public function fetchAllAlbums($fields=null,$limit=null)
     {
-        $this->results = $this->facebookPageService->fetchAlbums($this->getFields(), $this->getLimit());
+        $this->results = $this->facebookPageService->fetchAlbums($fields, $limit);
 
         return $this;
     }

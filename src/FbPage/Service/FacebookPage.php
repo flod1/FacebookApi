@@ -2,17 +2,11 @@
 
 namespace FbPage\Service;
 
-use Facebook\GraphNodes\GraphAlbum;
+use FbBasic\Service\FacebookBase;
 use FbPage\Options\FacebookPageOptions;
-use Zend\Cache\Storage\Adapter\ZendServerShm;
-use Zend\Captcha\Dumb;
-use Zend\Debug\Debug;
-use Zend\Form\Form;
-use Zend\ServiceManager\ServiceManager;
-use Zend\ServiceManager\ServiceManagerAwareInterface;
 use Zend\Stdlib\Hydrator;
 
-class FacebookPage extends FacebookAbstract implements ServiceManagerAwareInterface
+class FacebookPage extends FacebookBase
 {
     /**
      * @var FacebookPageOptions
@@ -95,45 +89,12 @@ class FacebookPage extends FacebookAbstract implements ServiceManagerAwareInterf
     }
 
     /**
-     * @param int $eventid
-     * @return \Facebook\GraphNodes\GraphEvent
-     */
-    public function fetchEvent($eventid,$fields="id,name,description")
-    {
-        $response = $this->fetchGraphNode($eventid,array("fields"=>$fields));
-
-        return $response->getGraphEvent();
-    }
-    /**
-     * @param int $id
-     * @return \Facebook\GraphNodes\GraphNode
-     */
-    public function fetchPost($id)
-    {
-        $response = $this->fetchGraphNode($id);
-
-        return $response->getGraphNode();
-    }
-    /**
-     * @param int $albumid
-     * @return \Facebook\GraphNodes\GraphAlbum
-     */
-    public function fetchAlbum($albumid)
-    {
-        $response = $this->fetchGraphNode($albumid);
-
-        return $response->getGraphAlbum();
-    }
-
-    /**
      * @param string $fields
      * @return \Facebook\GraphNodes\GraphPage
      */
     public function fetchPage($fields="id,name,about,fan_count,cover,picture")
     {
-        $response = $this->fetchGraphNode($this->getPageid(),array("fields"=>$fields));
-
-        return $response->getGraphPage();
+        return parent::fetchPage($this->getPageid(),$fields);
     }
 
     /**

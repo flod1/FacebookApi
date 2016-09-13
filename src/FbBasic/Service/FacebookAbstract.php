@@ -1,12 +1,8 @@
 <?php
 
-namespace FbPage\Service;
+namespace FbBasic\Service;
 
 use FbPage\Options\FacebookOptions;
-use Zend\Cache\Storage\Adapter\ZendServerShm;
-use Zend\Captcha\Dumb;
-use Zend\Debug\Debug;
-use Zend\Form\Form;
 use Zend\ServiceManager\ServiceManager;
 use Zend\ServiceManager\ServiceManagerAwareInterface;
 use Zend\Stdlib\Hydrator;

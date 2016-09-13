@@ -6,13 +6,41 @@
 * @var $pageWidget \FbPage\View\Helper\PageWidget
 */
 $pageWidget = $this->pageWidget();
+/**
+* @var $graphWidget \FbBasic\View\Helper\GraphWidget
+*/
+$graphWidget = $this->graphWidget();
 ?>
+
+
+<ul>
+    <li><a href="<? echo $this->url("fbpage_posts");?>"><?echo $this->translate("posts");?> <span class="badge"><? echo $pageWidget->fetchAllPosts()->count();?></span></a></li>
+    <li><a href="<? echo $this->url("fbpage_events");?>"><?echo $this->translate("events");?> <span class="badge"><? echo $pageWidget->fetchAllEvents()->count();?></span></a></li>
+    <li><a href="<? echo $this->url("fbpage_albums");?>"><?echo $this->translate("albums");?> <span class="badge"><? echo $pageWidget->fetchAllAlbums()->count();?></span></a></li>
+</ul>
 
 <div class="panel panel-default">
     <div class="panel-heading">Page Infos</div>
     <div class="panel-body">
         <?
         echo $pageWidget->fetchPageInfo();
+        ?>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Graph Widget Fetch Page</div>
+    <div class="panel-body">
+        <?
+        echo $graphWidget->fetchPage("140631369330249");
+        ?>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">Graph Widget Fetch Page</div>
+    <div class="panel-body">
+        <?
+        echo $graphWidget->fetchEvent("1042485019138787");
         ?>
     </div>
 </div>
@@ -31,56 +59,6 @@ $pageWidget = $this->pageWidget();
     <div class="panel-body">
         <?
         echo $pageWidget->fetchAllMilestones();
-        ?>
-    </div>
-</div>
-
-
-
-Info: <? echo var_dump($this->page);?></li>
-
-<ul>
-    <li><?echo $this->translate("posts");?>: <a href="<? echo $this->url("fbpage_posts");?>"><? echo count($this->posts)?></a> </li>
-    <li><?echo $this->translate("events");?>: <a href="<? echo $this->url("fbpage_events");?>"><? echo count($this->events)?></a> </li>
-    <li><?echo $this->translate("albums");?>: <a href="<? echo $this->url("fbpage_albums");?>"><? echo count($this->albums)?></a> </li>
-</ul>
-
-
-<div class="panel panel-default">
-    <div class="panel-heading">Albums by Page</div>
-    <div class="panel-body">
-        <?
-        /**
-         * @var $albumWidget \FbPage\View\Helper\AlbumWidget
-         */
-        $albumWidget = $this->albumWidget();
-        echo $albumWidget->fetchAll()->setLimit(10)->setTemplate("widget/default/table.phtml");
-        ?>
-    </div>
-</div>
-
-<div class="panel panel-default">
-    <div class="panel-heading">Events by Page</div>
-    <div class="panel-body">
-        <?
-        /**
-         * @var $eventWidget \FbPage\View\Helper\EventWidget
-         */
-        $eventWidget = $this->eventWidget();
-        echo $eventWidget->fetchAll()->setLimit(10)->setTemplate("widget/default/table.phtml");
-        ?>
-    </div>
-</div>
-
-<div class="panel panel-default">
-    <div class="panel-heading">1 Event</div>
-    <div class="panel-body">
-        <?
-        /**
-         * @var $eventWidget \FbPage\View\Helper\EventWidget
-         */
-        $eventWidget = $this->eventWidget();
-        echo $eventWidget->setFields("id,name,description,attending_count,start_time")->fetch("1042485019138787")->setTemplate("widget/default/detail.phtml");
         ?>
     </div>
 </div>

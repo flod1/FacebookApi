@@ -79,14 +79,21 @@ Examples for a Facebookpage
 ### Pages
 
 * Overview Page Content  `http://domain.dev/dashboard`
+* Widget Examples `http://domain.dev/examples`
 * List all Albums `http://domain.dev/albums`
 * List all Events `http://domain.dev/events`
 * List all Posts `http://domain.dev/posts`
 
 ### Widgets
 
-* albumwidget - Fetch and Display 10 Albums with the default Table Template
+* graphwidget - Fetch a Facebook GraphNode
 
 ```php
-<?php echo $albumWidget->fetchAll()->setLimit(10)->setTemplate("widget/default/table.phtml");
+<?php echo graphwidget->fetchEvent($eventid,$fields)->setTemplate("widget/default/detail.phtml");
+```
+
+* pagewidget - Fetch Childs from a page. e.x albums, events, posts
+
+```php
+<?php echo $pagewidget->fetchAlbums($fields,$limit)->setTemplate("widget/default/table.phtml");
 ```

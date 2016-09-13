@@ -19,19 +19,16 @@ class BasicWidget extends AbstractHelper
      */
     protected $fields=null;
     /**
-     * @var mixed
+     * @var \Facebook\GraphNodes\GraphEdge | \Facebook\GraphNodes\GraphNode
      */
     protected $results=null;
-    /**
-     * @var mixed
-     */
-    protected $result=null;
 
     public function __construct()
     {
         $this->vm = new ViewModel();
     }
 
+    /*
     public function setLimit($limit){
         $this->limit = $limit;
         return $this;
@@ -41,25 +38,30 @@ class BasicWidget extends AbstractHelper
         $this->fields = $fields;
         return $this;
     }
+    */
 
 
     public function render($template=null){
 
         //Have Results
         if($this->results){
-            $this->vm->setVariables(array("items"=>$this->results));
-            //Default Template
-            $this->vm->setTemplate("widget/default/table.phtml");
-        }
-        elseif($this->result){
-            $this->vm->setVariables(array("item"=>$this->result));
-            //Default Template
-            $this->vm->setTemplate("widget/default/detail.phtml");
+            //var_dump($this->results);
+            if(is_a($this->results,\Facebook\GraphNodes\GraphEdge::class)){
+                $this->vm->setVariables(array("items"=>$this->results));
+                //Default Template
+                $this->vm->setTemplate("widget/default/table.phtml");
+            }
+            else if(is_subclass_of($this->results,\Facebook\GraphNodes\GraphNode::class) || is_a($this->results,\Facebook\GraphNodes\GraphNode::class)){
+                $this->vm->setVariables(array("item"=>$this->results));
+                //Default Template
+                $this->vm->setTemplate("widget/default/detail.phtml");
+            }
         }
         //Overwrite template
         if($template){
             $this->vm->setTemplate($template);
         }
+        $this->results = null;
         return $this->getView()->render($this->vm);
     }
 
@@ -73,22 +75,5 @@ class BasicWidget extends AbstractHelper
     {
         return $this->render();
     }
-
-    /**
-     * @return int
-     */
-    public function getLimit()
-    {
-        return $this->limit;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFields()
-    {
-        return $this->fields;
-    }
-
 
 }

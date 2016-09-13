@@ -25,23 +25,30 @@ class ExampleController extends AbstractActionController
          * @var $pageWidget \FbPage\View\Helper\PageWidget
          */
 
+        $example['title'] = "Posts";
+        $example['describtion'] = 'Posts by a Page';
+        $example['code'] = 'echo $pageWidget->fetchAllPosts($fields=null,$limit=null)';
+        $example['sample'] = $pageWidget->fetchAllPosts()->render();
+
+        $examples[] = $example;
+
         $example['title'] = "Albums";
         $example['describtion'] = 'Albums by a Page';
-        $example['code'] = 'echo $pageWidget->fetchAllAlbums()';
+        $example['code'] = 'echo $pageWidget->fetchAllAlbums($fields=null,$limit=null)';
         $example['sample'] = $pageWidget->fetchAllAlbums()->render();
 
         $examples[] = $example;
 
         $example['title'] = "Events";
         $example['describtion'] = 'Events by a Page';
-        $example['code'] = 'echo $pageWidget->fetchAllEvents()';
+        $example['code'] = 'echo $pageWidget->fetchAllEvents($fields=null,$limit=null)';
         $example['sample'] = $pageWidget->fetchAlLEvents()->render();
 
         $examples[] = $example;
 
         $example['title'] = "Milestones";
         $example['describtion'] = 'Milestones by a Page';
-        $example['code'] = 'echo $pageWidget->fetchAllMilestones()';
+        $example['code'] = 'echo $pageWidget->fetchAllMilestones($fields=null,$limit=null)';
         $example['sample'] = $pageWidget->fetchAllMilestones()->render();
 
         $examples[] = $example;

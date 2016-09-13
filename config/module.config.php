@@ -28,7 +28,8 @@ return array(
             //Navigtion
             'navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
             //Services
-            'fbpage_facebook_service'       => 'FbPage\Factory\Service\FacebookFactory',
+            'fbbasic_graph_service'   => 'FbBasic\Factory\Service\FacebookBaseFactory',
+            //'fbpage_facebook_service'       => 'FbPage\Factory\Service\FacebookFactory',
             'fbpage_facebookpage_service'   => 'FbPage\Factory\Service\FacebookPageFactory',
             //Configurations
             'facebook_module_options'       => 'FbPage\Factory\Options\FacebookOptions',
@@ -74,9 +75,10 @@ return array(
 
         ),
         'factories' => [
+            'graphWidget' => 'FbBasic\Factory\View\Helper\GraphWidgetFactory',
             'pageWidget' => 'FbPage\Factory\View\Helper\PageWidgetFactory',
-            'albumWidget' => 'FbPage\Factory\View\Helper\AlbumWidgetFactory',
-            'eventWidget' => 'FbPage\Factory\View\Helper\EventWidgetFactory'
+            //'albumWidget' => 'FbPage\Factory\View\Helper\AlbumWidgetFactory',
+            //'eventWidget' => 'FbPage\Factory\View\Helper\EventWidgetFactory'
         ]
     ),
     'router' => array(
