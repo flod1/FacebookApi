@@ -97,3 +97,5 @@ Examples for a Facebookpage
 ```php
 <?php echo $pagewidget->fetchAlbums($fields,$limit)->setTemplate("widget/default/table.phtml");
 ```
+
+Test
