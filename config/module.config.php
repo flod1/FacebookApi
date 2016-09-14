@@ -71,7 +71,8 @@ return array(
             'graphpicture' => 'FbBasic\View\Helper\GraphPictureHelper',
             'graphpage' => 'FbBasic\View\Helper\GraphPageHelper',
             'graphlocation' => 'FbBasic\View\Helper\GraphLocationHelper',
-            'graphnode' => 'FbBasic\View\Helper\GraphNodeHelper'
+            'graphnode' => 'FbBasic\View\Helper\GraphNodeHelper',
+            'graphdump' => 'FbBasic\View\Helper\GraphDumpHelper'
 
         ),
         'factories' => [

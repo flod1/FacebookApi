@@ -3,6 +3,8 @@
 namespace FbBasic\Service;
 
 use FbPage\Options\FacebookOptions;
+use Zend\Log\Logger;
+use Zend\Log\LoggerInterface;
 use Zend\ServiceManager\ServiceManager;
 use Zend\ServiceManager\ServiceManagerAwareInterface;
 use Zend\Stdlib\Hydrator;
@@ -13,6 +15,10 @@ class FacebookAbstract implements ServiceManagerAwareInterface
      * @var FacebookOptions
      */
     protected $options;
+   /**
+     * @var \Zend\Log\LoggerInterface
+     */
+    protected $logger;
    /**
      * @var ServiceManager
      */
@@ -42,20 +48,26 @@ class FacebookAbstract implements ServiceManagerAwareInterface
 
     /**
      * @param $id
-     * @param null $parameters
+     * @param null $fields
      * @return \Facebook\FacebookResponse
      */
-    public function fetchGraphNode($id,$parameters=null)
+    public function fetchGraphNode($id,$fields=null)
     {
         $endpoint = "/".$id;
+        $parameters = array("fields"=>$fields);
 
         if(is_array($parameters)){
             $endpoint.="?";
             foreach($parameters AS $key => $value){
-                $endpoint.= $key."=".$value."&";
+                if($value){
+                    $endpoint.= $key."=".$value."&";
+                }
             }
         }
         $endpoint = trim($endpoint, "&");
+
+        $this->getLogger()->info($endpoint);
+        //$this->getServiceManager()->get('jhu.zdt_logger')->info($endpoint);
 
         return $this->get($endpoint);
 
@@ -78,10 +90,14 @@ class FacebookAbstract implements ServiceManagerAwareInterface
         if(is_array($parameters)){
             $endpoint.="?";
             foreach($parameters AS $key => $value){
-                $endpoint.= $key."=".$value."&";
+                if($value){
+                    $endpoint.= $key."=".$value."&";
+                }
             }
         }
         $endpoint = trim($endpoint, "&");
+
+        //$this->getServiceManager()->get('jhu.zdt_logger')->info($endpoint);
 
         $response = $this->get($endpoint);
 
@@ -123,5 +139,27 @@ class FacebookAbstract implements ServiceManagerAwareInterface
     {
         $this->options = $options;
     }
+
+    /**
+     * @return \Zend\Log\LoggerInterface
+     */
+    public function getLogger()
+    {
+        if (!$this->logger instanceof LoggerInterface) {
+            $this->setLogger($this->getServiceManager()->get('jhu.zdt_logger'));
+        }
+
+        return $this->logger;
+    }
+
+    /**
+     * @param \Zend\Log\LoggerInterface $logger
+     */
+    public function setLogger($logger)
+    {
+        $this->logger = $logger;
+    }
+
+
 
 }

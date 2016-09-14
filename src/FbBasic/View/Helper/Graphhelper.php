@@ -14,7 +14,7 @@ class Graphhelper extends AbstractHelper
     public function __invoke($mixed)
     {
         if(is_null($mixed)){
-            $string = "";
+            $string = "null";
         }
         elseif(is_object($mixed)){
             if(is_subclass_of($mixed,\Facebook\GraphNodes\GraphNode::class) || is_a($mixed,\Facebook\GraphNodes\GraphNode::class)){

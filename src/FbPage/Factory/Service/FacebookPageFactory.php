@@ -19,6 +19,7 @@ class FacebookPageFactory implements FactoryInterface
     {
         $service = new FacebookPage();
         $service->setServiceManager($serviceLocator);
+        $service->setPageid($service->getFacebookpageOptions()->getPageId());
 
         return $service;
     }

@@ -12,6 +12,10 @@ class FacebookPage extends FacebookBase
      * @var FacebookPageOptions
      */
     protected $facebookpageoptions;
+    /**
+     * @var int
+     */
+    protected $pageid;
 
     /**
      * get service options
@@ -44,6 +48,9 @@ class FacebookPage extends FacebookBase
      */
     public function fetchEvents($fields="description,cover,place,name,start_time",$limit=100)
     {
+        if ($fields == "*") {
+            $fields = "id,name,description,attending_count,declined_count,cover,category,owner,place,start_time,ticket_uri,type,end_time";
+        }
         return $this->fetchGraphEdge($this->getPageid(),'events',"GraphEvent",array("fields"=>$fields,"limit"=>$limit));
     }
     /**
@@ -98,11 +105,21 @@ class FacebookPage extends FacebookBase
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getPageid()
     {
-        return $this->getFacebookpageOptions()->getPageId();
+        return $this->pageid;
     }
+
+    /**
+     * @param int $pageid
+     */
+    public function setPageid($pageid)
+    {
+        $this->pageid = $pageid;
+    }
+
+
 
 }

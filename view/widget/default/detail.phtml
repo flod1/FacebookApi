@@ -1,8 +1,9 @@
-<table class="table-bordered">
-    <thead>
+<table class="table-bordered table table-responsive">
+    <thead class="thead-default">
     <tr>
-        <td>Feld</td>
-        <td>Wert</td>
+        <td><? echo $this->translate("Key");?> </td>
+        <td><? echo $this->translate("Type");?> </td>
+        <td><? echo $this->translate("Value");?> </td>
     </tr>
 
     </thead>
@@ -11,11 +12,22 @@
     /* @var $item Facebook\GraphNodes\GraphNode */
     $fieldnames = $item->getFieldNames();
     foreach ($fieldnames AS $fieldName) {
+        $field = $item->getField($fieldName);
+
+        if(is_object($field)){
+            $string = $item->asJson();
+            $typeString = get_class($field);
+        }
+        else{
+            $string = $item->getField($fieldName);
+            $typeString = gettype($field);
+        }
         ?>
         <tr>
             <td><? echo $fieldName; ?></td>
+            <td><? echo $typeString; ?></td>
             <td>
-                <? echo $this->graphhelper($item->getField($fieldName)); ?>&nbsp;
+                <? echo $this->graphdump($field); ?>&nbsp;
             </td>
         </tr>
         <?

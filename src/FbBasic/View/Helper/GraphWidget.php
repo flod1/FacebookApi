@@ -36,4 +36,11 @@ class GraphWidget extends BasicWidget
         return $this;
     }
 
+    public function fetchAlbum($albumid,$fields=null)
+    {
+        $this->results = $this->facebookBaseService->fetchAlbum($albumid, $fields);
+
+        return $this;
+    }
+
 }

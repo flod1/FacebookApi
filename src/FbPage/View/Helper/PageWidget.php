@@ -3,6 +3,16 @@ namespace FbPage\View\Helper;
 
 class PageWidget extends BaseWidget
 {
+    public function setPageID($pageid)
+    {
+        $this->facebookPageService->setPageid($pageid);
+
+    }
+    public function getPageID()
+    {
+        return $this->facebookPageService->getPageid();
+    }
+
     public function fetchPageInfo()
     {
         $this->results = $this->facebookPageService->fetchPage();
