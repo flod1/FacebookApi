@@ -25,8 +25,6 @@ return array(
             'translator' => 'MvcTranslator',
         ),
         'factories' => array(
-            //Navigtion
-            'navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
             //Services
             'fbbasic_graph_service'   => 'FbBasic\Factory\Service\FacebookBaseFactory',
             //'fbpage_facebook_service'       => 'FbPage\Factory\Service\FacebookFactory',
@@ -44,7 +42,6 @@ return array(
             'album_controller' => 'FbPage\Factory\Controller\AlbumControllerFactory'
         ),
         'invokables' => array(
-            'example_controller' => 'FbBasic\Controller\ExampleController',
             'dashboard_controller' => 'FbPage\Controller\IndexController',
             'event_controller' => 'FbPage\Controller\EventController',
             'post_controller' => 'FbPage\Controller\PostController',
@@ -93,16 +90,6 @@ return array(
                     'defaults' => array(
                         'controller' => 'dashboard_controller',
                         'action'     => 'index',
-                    ),
-                ),
-            ),
-            'fbpage_examples' => array(
-                'type' => 'Segment',
-                'options' => array(
-                    'route' => '/examples',
-                    'defaults' => array(
-                        'controller' => 'example_controller',
-                        'action'     => 'widgets',
                     ),
                 ),
             ),
@@ -168,47 +155,5 @@ return array(
             ),
         ),
     ),
-    // Navigation
-    'navigation' => array(
-        'default' => array(
-            array(
-                'label' => 'Dashboard',
-                'route' => 'fbpage_dashboard',
-            ),
-            array(
-                'label' => 'Examples',
-                'route' => 'fbpage_examples',
-            ),
-            array(
-                'label' => 'Albums',
-                'route' => 'fbpage_albums',
-                'pages' => array(
-                    array(
-                        'label' => 'Album',
-                        'route' => 'fbpage_album',
-                    ),
-                )
-            ),
-            array(
-                'label' => 'Events',
-                'route' => 'fbpage_events',
-                'pages' => array(
-                    array(
-                        'label' => 'Event',
-                        'route' => 'fbpage_event',
-                    ),
-                )
-            ),
-            array(
-                'label' => 'Posts',
-                'route' => 'fbpage_posts',
-                'pages' => array(
-                    array(
-                        'label' => 'Post',
-                        'route' => 'fbpage_post',
-                    ),
-                )
-            ),
-        )
-    )
+
 );
