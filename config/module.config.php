@@ -69,7 +69,9 @@ return array(
             'graphpage' => 'FbBasic\View\Helper\GraphPageHelper',
             'graphlocation' => 'FbBasic\View\Helper\GraphLocationHelper',
             'graphnode' => 'FbBasic\View\Helper\GraphNodeHelper',
-            'graphdump' => 'FbBasic\View\Helper\GraphDumpHelper'
+            'graphedge' => 'FbBasic\View\Helper\GraphEdgeHelper',
+            'graphdump' => 'FbBasic\View\Helper\GraphDumpHelper',
+            'graphfield' => 'FbBasic\View\Helper\GraphFieldHelper'
 
         ),
         'factories' => [

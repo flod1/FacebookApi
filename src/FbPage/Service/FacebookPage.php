@@ -46,32 +46,18 @@ class FacebookPage extends FacebookBase
      * @param int $limit
      * @return \Facebook\GraphNodes\GraphEdge
      */
-    public function fetchEvents($fields="description,cover,place,name,start_time",$limit=100)
+    public function fetchEvents($fields=null,$limit=100)
     {
-        if ($fields == "*") {
-            $fields = "id,name,description,attending_count,declined_count,cover,category,owner,place,start_time,ticket_uri,type,end_time";
-        }
-        return $this->fetchGraphEdge($this->getPageid(),'events',"GraphEvent",array("fields"=>$fields,"limit"=>$limit));
+        return parent::fetchEvents($this->getPageid(),$fields,$limit);
     }
     /**
      * @param string $fields
      * @param int $limit
      * @return \Facebook\GraphNodes\GraphEdge
      */
-    public function fetchMilestones($fields="title,description,start_time",$limit=100)
+    public function fetchMilestones($fields=null,$limit=100)
     {
-        return $this->fetchGraphEdge($this->getPageid(),'milestones',null,array("fields"=>$fields,"limit"=>$limit));
-    }
-
-    /**
-     * @param int $albumid
-     * @param string $fields
-     * @param int $limit
-     * @return array of \Facebook\GraphNodes\GraphNodes
-     */
-    public function fetchPhotosByAlbum($albumid,$fields="id,picture",$limit=100)
-    {
-        return $this->fetchGraphEdge($albumid,'photos',null,array("fields"=>$fields,"limit"=>$limit));
+        return parent::fetchMilestones($this->getPageid(),$fields,$limit);
     }
 
     /**
@@ -79,9 +65,9 @@ class FacebookPage extends FacebookBase
      * @param int $limit
      * @return \Facebook\GraphNodes\GraphEdge
      */
-    public function fetchPosts($fields="",$limit=100)
+    public function fetchPosts($fields=null,$limit=100)
     {
-        return $this->fetchGraphEdge($this->getPageid(),'posts',null,array("fields"=>$fields,"limit"=>$limit));
+        return parent::fetchPosts($this->getPageid(),$fields,$limit);
 
     }
 
@@ -90,9 +76,9 @@ class FacebookPage extends FacebookBase
      * @param int $limit
      * @return \Facebook\GraphNodes\GraphEdge
      */
-    public function fetchAlbums($fields="id,name,picture,cover_photo",$limit=100)
+    public function fetchAlbums($fields=null,$limit=100)
     {
-        return $this->fetchGraphEdge($this->getPageid(),'albums','GraphAlbum',array("fields"=>$fields,"limit"=>$limit));
+        return parent::fetchAlbums($this->getPageid(),$fields,$limit);
     }
 
     /**

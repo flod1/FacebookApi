@@ -20,7 +20,7 @@ class GraphNodeHelper extends AbstractHelper
     {
         if(is_a($mixed,\Facebook\GraphNodes\GraphCoverPhoto::class)){
             /* @var $mixed \Facebook\GraphNodes\GraphCoverPhoto */
-            $string = $this->view->graphcoverphoto($mixed);
+            $string = '<a href="'.$this->view->url("graphnode",array("id"=>$mixed->getField("id"))).'">'.$this->view->graphcoverphoto($mixed).'</a>';
         }
         else if(is_a($mixed,\Facebook\GraphNodes\GraphPicture::class)){
             /* @var $mixed \Facebook\GraphNodes\GraphPicture */
@@ -28,23 +28,33 @@ class GraphNodeHelper extends AbstractHelper
         }
         else if(is_a($mixed,\Facebook\GraphNodes\GraphPage::class)){
             /* @var $mixed \Facebook\GraphNodes\GraphPage */
-            $string = $this->view->graphpage($mixed);
+            //$string = $this->view->graphpage($mixed);
+            $string = '<a href="'.$this->view->url("graphnode",array("id"=>$mixed->getField("id"))).'">'.$mixed->getField("name").'</a>';
         }
         else if(is_a($mixed,\Facebook\GraphNodes\GraphLocation::class)){
             /* @var $mixed \Facebook\GraphNodes\GraphLocation */
-            $string = $this->view->locationhelper($mixed);
+            //$string = $this->view->locationhelper($mixed);
+            $string = '<a href="'.$this->view->url("graphnode",array("id"=>$mixed->getField("id"))).'">'.$mixed->getField("name").'</a>';
         }
-        else if($mixed->getField("picture")){
+        else if(is_a($mixed,\Facebook\GraphNodes\GraphNode::class)){
+            /* @var $mixed \Facebook\GraphNodes\GraphNode */
+            $string = '<a href="'.$this->view->url("graphnode",array("id"=>$mixed->getField("id"))).'">'.$mixed->getField("name").'</a>';
+        }
+        else if($mixed->getField("picture")<>""){
             $string = '<img src="'.$mixed->getField("picture").'" class="img-responsive">';
-
-
+        }
+        else if($mixed->getField("icon")<>""){
+            $string = '<img src="'.$mixed->getField("icon").'" class="img-responsive">';
         }
         else {
+
             //todo better
+            var_dump($mixed);
+            echo gettype($mixed);
             $string = $mixed->asJson();
         }
 
-        //var_dump($mixed);
+        var_dump($mixed);
         return $string;
     }
 }

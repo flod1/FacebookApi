@@ -48,13 +48,12 @@ class FacebookAbstract implements ServiceManagerAwareInterface
 
     /**
      * @param $id
-     * @param null $fields
+     * @param array $parameters
      * @return \Facebook\FacebookResponse
      */
-    public function fetchGraphNode($id,$fields=null)
+    public function fetchGraphNode($id,$parameters=null)
     {
         $endpoint = "/".$id;
-        $parameters = array("fields"=>$fields);
 
         if(is_array($parameters)){
             $endpoint.="?";
