@@ -12,6 +12,9 @@ class FacebookBase extends FacebookAbstract implements ServiceManagerAwareInterf
     const ALL_MILESTONE_FIELDS = "id,title,from,description,start_time,end_time";
     const ALL_POST_FIELDS = "id,caption,description,created_time,from,icon,message,name,picture,source,type,to,with_tags";
     const ALL_ALBUM_FIELDS = "id,name,description,event,from,location,type,place,count";
+    const ALL_PAGE_FIELDS = "id,name,description,description_html,about,fan_count,cover,picture,founded,display_subtext,hours,impressum,parking, personal_info,personal_interests,phone,place_type,press_contact, products,release_date,start_info,store_number,username, website";
+    const ALL_VIDEO_FIELDS = "id,title,created_time,description,embed_html,event,format,from,icon,length,picture,place,source,status";
+
     /**
      * @param int $photoid
      * @param string $fields
@@ -27,6 +30,22 @@ class FacebookBase extends FacebookAbstract implements ServiceManagerAwareInterf
         $response = $this->fetchGraphNode($photoid, $parameters);
 
         return $response->getGraphEvent();
+    }
+    /**
+     * @param int $videoid
+     * @param string $fields
+     * @return \Facebook\GraphNodes\GraphNode
+     */
+    public function fetchVideo($videoid, $fields = null)
+    {
+        if ($fields == "*") {
+            $fields = $this::ALL_VIDEO_FIELDS;
+        }
+
+        $parameters = array("fields"=>$fields);
+        $response = $this->fetchGraphNode($videoid, $parameters);
+
+        return $response->getGraphNode();
     }
     /**
      * @param int $postid
@@ -113,6 +132,20 @@ class FacebookBase extends FacebookAbstract implements ServiceManagerAwareInterf
      * @param int $nodeid
      * @param string $fields
      * @param int $limit
+     * @return array of \Facebook\GraphNodes\GraphNode
+     */
+    public function fetchVideos($nodeid,$fields=null,$limit=100)
+    {
+        if ($fields == "*") {
+            $fields = $this::ALL_VIDEO_FIELDS;
+        }
+        return $this->fetchGraphEdge($nodeid,'videos',null,array("fields"=>$fields,"limit"=>$limit));
+    }
+
+    /**
+     * @param int $nodeid
+     * @param string $fields
+     * @param int $limit
      * @return \Facebook\GraphNodes\GraphEdge
      */
     public function fetchPosts($nodeid,$fields=null,$limit=100)
@@ -144,7 +177,7 @@ class FacebookBase extends FacebookAbstract implements ServiceManagerAwareInterf
     public function fetchPage($pageid, $fields = null)
     {
         if ($fields == "*") {
-            $fields = "id,name,description,description_html,about,fan_count,cover,picture,founded,display_subtext,hours,impressum,parking, personal_info,personal_interests,phone,place_type,press_contact, products,release_date,start_info,store_number,username, website";
+            $fields = $this::ALL_PAGE_FIELDS;
         }
         $parameters = array("fields"=>$fields);
         $response = $this->fetchGraphNode($pageid, $parameters);
@@ -161,7 +194,6 @@ class FacebookBase extends FacebookAbstract implements ServiceManagerAwareInterf
     public function fetchPhotosByAlbum($albumid,$fields=null,$limit=100)
     {
         if ($fields == "*") {
-            $fields = "id,album,event,from,name,picture, place,width,height";
             $fields = $this::ALL_PHOTO_FIELDS;
         }
         return $this->fetchGraphEdge($albumid,'photos',null,array("fields"=>$fields,"limit"=>$limit));
@@ -179,6 +211,20 @@ class FacebookBase extends FacebookAbstract implements ServiceManagerAwareInterf
             $fields = $this::ALL_MILESTONE_FIELDS;
         }
         return $this->fetchGraphEdge($nodeid,'milestones',null,array("fields"=>$fields,"limit"=>$limit));
+    }
+
+    /**
+     * @param int $pageid
+     * @param string $fields
+     * @param int $limit
+     * @return \Facebook\GraphNodes\GraphEdge
+     */
+    public function fetchGlobalBrandChildren($pageid,$fields=null,$limit=100)
+    {
+        if ($fields == "*") {
+            //$fields = $this::ALL_MILESTONE_FIELDS;
+        }
+        return $this->fetchGraphEdge($pageid,'global_brand_children',null,array("fields"=>$fields,"limit"=>$limit));
     }
 
 }

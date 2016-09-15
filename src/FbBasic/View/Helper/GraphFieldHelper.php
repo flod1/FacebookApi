@@ -74,9 +74,13 @@ class GraphFieldHelper extends AbstractHelper
                 case "integer":
                     $string = $mixed;
                     break;
+                case "double":
+                case "float":
+                    $string = $mixed."";
+                    break;
                 default:
+                    $string =gettype($mixed);
                     var_dump($mixed);
-                    die();
             }
             //todo better
             //var_dump($mixed);

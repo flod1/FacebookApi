@@ -36,6 +36,7 @@ class Graphhelper extends AbstractHelper
                 case "boolean":$string = ($mixed) ? 'true' : 'false'; break;
                 case "string":$string = $mixed; break;
                 case "integer":$string = $mixed; break;
+                case "float":$string = $mixed; break;
                 default:var_dump($mixed);die();
             }
 
