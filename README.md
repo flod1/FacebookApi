@@ -25,8 +25,8 @@ Features / Goals
 * Page Service Album (List/Details) [INCOMPLETE]
 * Translate Route [COMPLETE]
 * Widgets 
-* - Graph [INCOMPLETE]
-* - Page  [TEST]
+* Graph [INCOMPLETE]
+* Page  [TEST]
 
 Installation
 ------------

@@ -50,10 +50,10 @@ class Module
 
         // Has a Logger
         if($sm->has('jhu.zdt_logger')){
-            $sharedManager->attach('FbBasic\Service\FacebookAbstract', 'get',
+            $sharedManager->attach('FbBasic\Service\FacebookAbstract', 'get.pre',
                 function($e) use ($sm) {
-                    if ($e->getParam('message')){
-                        $sm->get('jhu.zdt_logger')->info($e->getParam('message'));
+                    if ($e->getParam('endpoint')){
+                        $sm->get('jhu.zdt_logger')->info($e->getParam('endpoint'));
                     }
                 }
             );
