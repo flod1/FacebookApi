@@ -41,7 +41,7 @@ class FacebookAbstract implements ServiceManagerAwareInterface
 
     public function get($endpoint){
 
-        $this->getEventManager()->trigger(__FUNCTION__, $this, array('message' => $endpoint));
+        $this->getEventManager()->trigger(__FUNCTION__. '.pre', $this, array('endpoint' => $endpoint,'accessToken'=>$this->fb->getDefaultAccessToken()));
         return $this->fb->get($endpoint,$this->fb->getDefaultAccessToken());
     }
 

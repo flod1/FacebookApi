@@ -11,14 +11,6 @@ class BasicWidget extends AbstractHelper
      */
     protected $vm;
     /**
-     * @var int
-     */
-    protected $limit=5;
-    /**
-     * @var string
-     */
-    protected $fields=null;
-    /**
      * @var \Facebook\GraphNodes\GraphEdge | \Facebook\GraphNodes\GraphNode
      */
     protected $results=null;
@@ -27,20 +19,7 @@ class BasicWidget extends AbstractHelper
     {
         $this->vm = new ViewModel();
     }
-
-    /*
-    public function setLimit($limit){
-        $this->limit = $limit;
-        return $this;
-    }
-
-    public function setFields($fields){
-        $this->fields = $fields;
-        return $this;
-    }
-    */
-
-
+    
     public function render($template=null){
 
         //Have Results
