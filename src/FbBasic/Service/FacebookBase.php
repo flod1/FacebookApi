@@ -10,7 +10,7 @@ class FacebookBase extends FacebookAbstract implements ServiceManagerAwareInterf
     const ALL_EVENT_FIELDS = "id,name,description,attending_count,declined_count,cover,category,owner,place,ticket_uri,type,start_time,end_time";
     const ALL_PHOTO_FIELDS = "id,album,event,from,icon, height,width,name,picture,target,created_time,images";
     const ALL_MILESTONE_FIELDS = "id,title,from,description,start_time,end_time";
-    const ALL_POST_FIELDS = "id,caption,description,created_time,from,icon,message,name,picture,source,type,to,with_tags";
+    const ALL_POST_FIELDS = "id,caption,description,created_time,from,icon,message,name,picture,source,type,to,with_tags,place,story,shares";
     const ALL_ALBUM_FIELDS = "id,name,description,event,from,location,type,place,count";
     const ALL_PAGE_FIELDS = "id,name,description,description_html,about,fan_count,cover,picture,founded,display_subtext,hours,impressum,parking, personal_info,personal_interests,phone,place_type,press_contact, products,release_date,start_info,store_number,username, website";
     const ALL_VIDEO_FIELDS = "id,title,created_time,description,embed_html,event,format,from,icon,length,picture,place,source,status";
@@ -146,6 +146,20 @@ class FacebookBase extends FacebookAbstract implements ServiceManagerAwareInterf
      * @param int $nodeid
      * @param string $fields
      * @param int $limit
+     * @return array of \Facebook\GraphNodes\GraphNode
+     */
+    public function fetchLikes($nodeid,$fields=null,$limit=100)
+    {
+        if ($fields == "*") {
+            //$fields = $this::ALL_VIDEO_FIELDS;
+        }
+        return $this->fetchGraphEdge($nodeid,'likes',null,array("fields"=>$fields,"limit"=>$limit));
+    }
+
+    /**
+     * @param int $nodeid
+     * @param string $fields
+     * @param int $limit
      * @return \Facebook\GraphNodes\GraphEdge
      */
     public function fetchPosts($nodeid,$fields=null,$limit=100)
@@ -183,6 +197,34 @@ class FacebookBase extends FacebookAbstract implements ServiceManagerAwareInterf
         $response = $this->fetchGraphNode($pageid, $parameters);
 
         return $response->getGraphPage();
+    }
+
+    /**
+     * @param int $videoid
+     * @param string $fields
+     * @param int $limit
+     * @return \Facebook\GraphNodes\GraphEdge
+     */
+    public function fetchLikesByVideo($videoid,$fields=null,$limit=100)
+    {
+        if ($fields == "*") {
+            //$fields = $this::ALL_VIDEO_FIELDS;
+        }
+        return $this->fetchGraphEdge($videoid,'likes',null,array("fields"=>$fields,"limit"=>$limit));
+    }
+
+    /**
+     * @param int $videoid
+     * @param string $fields
+     * @param int $limit
+     * @return \Facebook\GraphNodes\GraphEdge
+     */
+    public function fetchCommentsByVideo($videoid,$fields=null,$limit=100)
+    {
+        if ($fields == "*") {
+            //$fields = $this::ALL_VIDEO_FIELDS;
+        }
+        return $this->fetchGraphEdge($videoid,'comments',null,array("fields"=>$fields,"limit"=>$limit));
     }
 
     /**

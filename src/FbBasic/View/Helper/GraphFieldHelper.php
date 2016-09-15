@@ -40,7 +40,10 @@ class GraphFieldHelper extends AbstractHelper
             $string = '<a href="' . $this->view->url("graphnode", array("id" => $mixed->getField("id"))) . '">' . $mixed->getField("name") . '</a>';
         } else if (is_a($mixed, \Facebook\GraphNodes\GraphNode::class)) {
             /* @var $mixed \Facebook\GraphNodes\GraphNode */
-            if ($mixed->getField("id")) {
+            if ($fieldname == "shares") {
+                //todo
+                $string = $mixed->getField("count");
+            } elseif ($mixed->getField("id")) {
                 $string = '<a href="' . $this->view->url("graphnode", array("id" => $mixed->getField("id"))) . '">' . $mixed->getField("name") . '</a>';
             } elseif ($fieldname == "images222222222") {
                 //Array if Platform Image Source
