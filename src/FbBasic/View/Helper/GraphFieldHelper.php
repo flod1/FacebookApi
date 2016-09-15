@@ -34,7 +34,13 @@ class GraphFieldHelper extends AbstractHelper
             //$string = $this->view->graphpicture($mixed);
         } else if (is_a($mixed, \Facebook\GraphNodes\GraphPage::class)) {
             /* @var $mixed \Facebook\GraphNodes\GraphPage */
-            $string = '<a href="' . $this->view->url("graphnode", array("id" => $mixed->getField("id"))) . '">' . $mixed->getField("name") . '</a>';
+            if ($mixed->getField("id")) {
+                $string = '<a href="' . $this->view->url("graphnode", array("id" => $mixed->getField("id"))) . '">' . $mixed->getField("name") . '</a>';
+            }
+            else{
+                $string = $mixed->getName();
+            }
+            //$string = '<a href="' . $this->view->url("graphnode", array("id" => $mixed->getField("id"))) . '">' . $mixed->getField("name") . '</a>';
         } else if (is_a($mixed, \Facebook\GraphNodes\GraphLocation::class)) {
             /* @var $mixed \Facebook\GraphNodes\GraphLocation */
             $string = '<a href="' . $this->view->url("graphnode", array("id" => $mixed->getField("id"))) . '">' . $mixed->getField("name") . '</a>';

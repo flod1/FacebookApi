@@ -7,12 +7,13 @@ use Zend\Stdlib\Hydrator;
 
 class FacebookBase extends FacebookAbstract implements ServiceManagerAwareInterface
 {
-    const ALL_EVENT_FIELDS = "id,name,description,attending_count,declined_count,cover,category,owner,place,ticket_uri,type,start_time,end_time";
+    const ALL_EVENT_FIELDS = "id,name,description,attending_count,declined_count,interested_count,maybe_count,noreply_count,cover,category,owner,place,ticket_uri,type,start_time,end_time,parent_group";
     const ALL_PHOTO_FIELDS = "id,album,event,from,icon, height,width,name,picture,target,created_time,images";
     const ALL_MILESTONE_FIELDS = "id,title,from,description,start_time,end_time";
     const ALL_POST_FIELDS = "id,caption,description,created_time,from,icon,message,name,picture,source,type,to,with_tags,place,story,shares";
     const ALL_ALBUM_FIELDS = "id,name,description,event,from,location,type,place,count";
     const ALL_PAGE_FIELDS = "id,name,description,description_html,about,fan_count,cover,picture,founded,display_subtext,hours,impressum,parking, personal_info,personal_interests,phone,place_type,press_contact, products,release_date,start_info,store_number,username, website";
+    const ALL_GROUP_FIELDS = "id,name,cover,description,email,icon,member_request_count,owner";
     const ALL_VIDEO_FIELDS = "id,title,created_time,description,embed_html,event,format,from,icon,length,picture,place,source,status";
 
     /**
@@ -96,6 +97,23 @@ class FacebookBase extends FacebookAbstract implements ServiceManagerAwareInterf
         $response = $this->fetchGraphNode($eventid, $parameters);
 
         return $response->getGraphEvent();
+    }
+
+    /**
+     * @param int $groupid
+     * @param string $fields
+     * @return \Facebook\GraphNodes\GraphNode
+     */
+    public function fetchGroup($groupid, $fields = null)
+    {
+        if ($fields == "*") {
+            $fields = $this::ALL_GROUP_FIELDS;
+        }
+
+        $parameters = array("fields"=>$fields);
+        $response = $this->fetchGraphNode($groupid, $parameters);
+
+        return $response->getGraphNode();
     }
 
     /**
@@ -221,10 +239,21 @@ class FacebookBase extends FacebookAbstract implements ServiceManagerAwareInterf
      */
     public function fetchCommentsByVideo($videoid,$fields=null,$limit=100)
     {
+        return $this->fetchComments($videoid,$fields,$limit);
+    }
+
+    /**
+     * @param int $nodeid
+     * @param string $fields
+     * @param int $limit
+     * @return \Facebook\GraphNodes\GraphEdge
+     */
+    public function fetchComments($nodeid,$fields=null,$limit=100)
+    {
         if ($fields == "*") {
             //$fields = $this::ALL_VIDEO_FIELDS;
         }
-        return $this->fetchGraphEdge($videoid,'comments',null,array("fields"=>$fields,"limit"=>$limit));
+        return $this->fetchGraphEdge($nodeid,'comments',null,array("fields"=>$fields,"limit"=>$limit));
     }
 
     /**
@@ -235,10 +264,65 @@ class FacebookBase extends FacebookAbstract implements ServiceManagerAwareInterf
      */
     public function fetchPhotosByAlbum($albumid,$fields=null,$limit=100)
     {
+        return $this->fetchPhotos($albumid,$fields,$limit);
+    }
+
+    /**
+     * @param int $nodeid
+     * @param string $fields
+     * @param int $limit
+     * @return \Facebook\GraphNodes\GraphEdge
+     */
+    public function fetchPhotos($nodeid,$fields=null,$limit=100)
+    {
         if ($fields == "*") {
             $fields = $this::ALL_PHOTO_FIELDS;
         }
-        return $this->fetchGraphEdge($albumid,'photos',null,array("fields"=>$fields,"limit"=>$limit));
+        return $this->fetchGraphEdge($nodeid,'photos',null,array("fields"=>$fields,"limit"=>$limit));
+    }
+
+    /**
+     * @param int $eventid
+     * @param string $fields
+     * @param int $limit
+     * @return \Facebook\GraphNodes\GraphEdge
+     */
+    public function fetchAttendingsByEvent($eventid,$fields=null,$limit=100)
+    {
+        return $this->fetchGraphEdge($eventid,'attending',null,array("fields"=>$fields,"limit"=>$limit));
+    }
+
+    /**
+     * @param int $eventid
+     * @param string $fields
+     * @param int $limit
+     * @return \Facebook\GraphNodes\GraphEdge
+     */
+    public function fetchDeclinedsByEvent($eventid,$fields=null,$limit=100)
+    {
+        return $this->fetchGraphEdge($eventid,'declined',null,array("fields"=>$fields,"limit"=>$limit));
+    }
+
+    /**
+     * @param int $eventid
+     * @param string $fields
+     * @param int $limit
+     * @return \Facebook\GraphNodes\GraphEdge
+     */
+    public function fetchInterestedsByEvent($eventid,$fields=null,$limit=100000)
+    {
+        return $this->fetchGraphEdge($eventid,'interested',null,array("fields"=>$fields,"limit"=>$limit));
+    }
+
+    /**
+     * @param int $eventid
+     * @param string $fields
+     * @param int $limit
+     * @return \Facebook\GraphNodes\GraphEdge
+     */
+    public function fetchMaybesByEvent($eventid,$fields=null,$limit=100)
+    {
+        return $this->fetchGraphEdge($eventid,'maybe',null,array("fields"=>$fields,"limit"=>$limit));
     }
 
     /**

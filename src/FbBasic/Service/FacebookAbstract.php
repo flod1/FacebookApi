@@ -3,8 +3,10 @@
 namespace FbBasic\Service;
 
 use FbPage\Options\FacebookOptions;
-use Zend\Log\Logger;
-use Zend\Log\LoggerInterface;
+use Traversable;
+use Zend\EventManager\EventManagerAwareInterface;
+use Zend\EventManager\EventManagerInterface;
+use Zend\EventManager\EventManager;
 use Zend\ServiceManager\ServiceManager;
 use Zend\ServiceManager\ServiceManagerAwareInterface;
 use Zend\Stdlib\Hydrator;
@@ -15,10 +17,6 @@ class FacebookAbstract implements ServiceManagerAwareInterface
      * @var FacebookOptions
      */
     protected $options;
-   /**
-     * @var \Zend\Log\LoggerInterface
-     */
-    protected $logger;
    /**
      * @var ServiceManager
      */
@@ -43,6 +41,7 @@ class FacebookAbstract implements ServiceManagerAwareInterface
 
     public function get($endpoint){
 
+        $this->getEventManager()->trigger(__FUNCTION__, $this, array('message' => $endpoint));
         return $this->fb->get($endpoint,$this->fb->getDefaultAccessToken());
     }
 
@@ -64,9 +63,6 @@ class FacebookAbstract implements ServiceManagerAwareInterface
             }
         }
         $endpoint = trim($endpoint, "&");
-
-        $this->getLogger()->info($endpoint);
-        //$this->getServiceManager()->get('jhu.zdt_logger')->info($endpoint);
 
         return $this->get($endpoint);
 
@@ -95,8 +91,6 @@ class FacebookAbstract implements ServiceManagerAwareInterface
             }
         }
         $endpoint = trim($endpoint, "&");
-
-        //$this->getServiceManager()->get('jhu.zdt_logger')->info($endpoint);
 
         $response = $this->get($endpoint);
 
@@ -140,25 +134,47 @@ class FacebookAbstract implements ServiceManagerAwareInterface
     }
 
     /**
-     * @return \Zend\Log\LoggerInterface
+     * @var EventManagerInterface
      */
-    public function getLogger()
-    {
-        if (!$this->logger instanceof LoggerInterface) {
-            $this->setLogger($this->getServiceManager()->get('jhu.zdt_logger'));
-        }
+    protected $events;
 
-        return $this->logger;
+    /**
+     * Set the event manager instance used by this context
+     *
+     * @param  EventManagerInterface $events
+     * @return mixed
+     */
+    public function setEventManager(EventManagerInterface $events)
+    {
+        $identifiers = array(__CLASS__, get_called_class());
+        if (isset($this->eventIdentifier)) {
+            if ((is_string($this->eventIdentifier))
+                || (is_array($this->eventIdentifier))
+                || ($this->eventIdentifier instanceof Traversable)
+            ) {
+                $identifiers = array_unique(array_merge($identifiers, (array) $this->eventIdentifier));
+            } elseif (is_object($this->eventIdentifier)) {
+                $identifiers[] = $this->eventIdentifier;
+            }
+            // silently ignore invalid eventIdentifier types
+        }
+        $events->setIdentifiers($identifiers);
+        $this->events = $events;
+        return $this;
     }
 
     /**
-     * @param \Zend\Log\LoggerInterface $logger
+     * Retrieve the event manager
+     *
+     * Lazy-loads an EventManager instance if none registered.
+     *
+     * @return EventManagerInterface
      */
-    public function setLogger($logger)
+    public function getEventManager()
     {
-        $this->logger = $logger;
+        if (!$this->events instanceof EventManagerInterface) {
+            $this->setEventManager(new EventManager());
+        }
+        return $this->events;
     }
-
-
-
 }

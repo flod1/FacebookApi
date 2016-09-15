@@ -11,6 +11,7 @@ namespace FacebookApi;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Zend\ServiceManager\ServiceManager;
 
 class Module
 {
@@ -24,7 +25,10 @@ class Module
         $eventManager = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $eventManager->attach('route', array($this, 'onPreRoute'), 100);
+        //$eventManager->attach('', array($this, 'onFacebookApiCall'), 100);
         $moduleRouteListener->attach($eventManager);
+
+        $this->onFacebookApiCall($e);
     }
 
     // Translaton routing
@@ -32,5 +36,28 @@ class Module
         $application    = $e->getApplication();
         $serviceManager = $application->getServiceManager();
         $serviceManager->get('router')->setTranslator($serviceManager->get('translator'));
+    }
+
+    // Facebook Graph Api get
+    public function onFacebookApiCall($e){
+
+        $application   = $e->getApplication();
+        /**
+         * @var $sm ServiceManager
+         */
+        $sm = $application->getServiceManager();
+        $sharedManager = $application->getEventManager()->getSharedManager();
+
+        // Has a Logger
+        if($sm->has('jhu.zdt_logger')){
+            $sharedManager->attach('FbBasic\Service\FacebookAbstract', 'get',
+                function($e) use ($sm) {
+                    if ($e->getParam('message')){
+                        $sm->get('jhu.zdt_logger')->info($e->getParam('message'));
+                    }
+                }
+            );
+        }
+
     }
 }
