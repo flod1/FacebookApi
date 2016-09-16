@@ -14,6 +14,7 @@ class GraphLocationHelper extends AbstractHelper
 {
     public function __invoke($mixed)
     {
+        $string = "";
         if(is_a($mixed,GraphLocation::class)){
             /* @var $mixed \Facebook\GraphNodes\GraphLocation */
             //var_dump($mixed);die();
@@ -25,6 +26,9 @@ class GraphLocationHelper extends AbstractHelper
                           '. $mixed->getLocation()->getCountry().'
                         </address>';
             //$string = '<a href="'.$this->view->url().'">'.$mixed->getField("name").'</a>';
+        }
+        else{
+            var_dump($mixed);
         }
         
         return $string;

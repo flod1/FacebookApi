@@ -1,7 +1,7 @@
 <?php
 namespace FbBasic\Factory\View\Helper;
 
-use FbBasic\View\Helper\GraphWidget;
+use FbBasic\View\Widget\GraphWidget;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 

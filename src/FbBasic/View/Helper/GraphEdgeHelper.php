@@ -18,9 +18,12 @@ class GraphEdgeHelper extends AbstractHelper
             $string = "";
             /* @var $mixed \Facebook\GraphNodes\GraphEdge */
             foreach($mixed AS $item){
+
                 /* @var $item \Facebook\GraphNodes\GraphNode */
-                $string .= '<a href="' . $this->view->url("graphnode", array("id" => $item->getField("id"))) . '">' . $item->getField("name") . '</a><br>';
-                //var_dump($item);
+                $string .= $this->view->graphfield(null,$item); ?><?
+
+                //$string .= '<a href="' . $this->view->url("graphnode", array("id" => $item->getField("id"))) . '">' . $item->getField("name") . '</a><br>';
+
             }
 
         }

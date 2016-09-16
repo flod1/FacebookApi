@@ -1,7 +1,7 @@
 <?php
 namespace FbPage\View\Helper;
 
-use FbBasic\View\Helper\BasicWidget;
+use FbBasic\View\Widget\BasicWidget;
 use FbPage\Service\FacebookPage;
 
 class BaseWidget extends BasicWidget

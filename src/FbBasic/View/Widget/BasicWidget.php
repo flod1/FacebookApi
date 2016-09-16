@@ -1,5 +1,5 @@
 <?php
-namespace FbBasic\View\Helper;
+namespace FbBasic\View\Widget;
 
 use Zend\View\Helper\AbstractHelper;
 use Zend\View\Model\ViewModel;
@@ -19,7 +19,7 @@ class BasicWidget extends AbstractHelper
     {
         $this->vm = new ViewModel();
     }
-    
+
     public function render($template=null){
 
         //Have Results

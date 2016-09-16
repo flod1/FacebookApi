@@ -1,5 +1,5 @@
 <?php
-namespace FbBasic\View\Helper;
+namespace FbBasic\View\Widget;
 
 use FbBasic\Service\FacebookBase;
 use Zend\View\Model\ViewModel;

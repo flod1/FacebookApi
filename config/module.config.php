@@ -63,8 +63,8 @@ return array(
     ),
     'view_helpers' => array(
         'invokables'=> array(
-            'graphhelper' => 'FbBasic\View\Helper\Graphhelper',
             'graphcoverphoto' => 'FbBasic\View\Helper\GraphCoverPhotoHelper',
+            'graphphoto' => 'FbBasic\View\Helper\GraphPhotoHelper',
             'graphpicture' => 'FbBasic\View\Helper\GraphPictureHelper',
             'graphpage' => 'FbBasic\View\Helper\GraphPageHelper',
             'graphlocation' => 'FbBasic\View\Helper\GraphLocationHelper',

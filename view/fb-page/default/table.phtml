@@ -30,7 +30,7 @@
             foreach ($fieldnames AS $fieldName) {
                 ?>
                 <td>
-                    <? echo $this->graphhelper($item->getField($fieldName)); ?>&nbsp;
+                    <? echo $this->graphfield($fieldName,$item->getField($fieldName)); ?>&nbsp;
                 </td>
                 <?
             }

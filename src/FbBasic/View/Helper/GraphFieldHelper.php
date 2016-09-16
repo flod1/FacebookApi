@@ -8,7 +8,7 @@
  */
 namespace FbBasic\View\Helper;
 
-use Facebook\GraphNodes\GraphNodeFactory;
+use Facebook\GraphNodes;
 use Zend\View\Helper\AbstractHelper;
 
 class GraphFieldHelper extends AbstractHelper
@@ -25,44 +25,53 @@ class GraphFieldHelper extends AbstractHelper
         } else if (is_a($mixed, \Facebook\GraphNodes\GraphEdge::class)) {
             /* @var $mixed \Facebook\GraphNodes\GraphEdge */
             $string = $this->view->graphedge($mixed);
+        } else if (is_a($mixed, \FbBasic\GraphNodes\Photo::class)) {
+            /* @var $mixed \FbBasic\GraphNodes\Photo */
+            $string = $this->view->graphphoto($mixed);
         } else if (is_a($mixed, \Facebook\GraphNodes\GraphCoverPhoto::class)) {
             /* @var $mixed \Facebook\GraphNodes\GraphCoverPhoto */
-            $string = '<a href="' . $this->view->url("graphnode", array("id" => $mixed->getField("id"))) . '">' . $this->view->graphcoverphoto($mixed) . '</a>';
+            $string = $this->view->graphcoverphoto($mixed);
+            //$string = '<a href="' . $this->view->url("graphnode", array("id" => $mixed->getField("id"))) . '">' . $this->view->graphcoverphoto($mixed) . '</a>';
         } else if (is_a($mixed, \Facebook\GraphNodes\GraphPicture::class)) {
             /* @var $mixed \Facebook\GraphNodes\GraphPicture */
             $string = $this->view->graphpicture($mixed);
-            //$string = $this->view->graphpicture($mixed);
         } else if (is_a($mixed, \Facebook\GraphNodes\GraphPage::class)) {
             /* @var $mixed \Facebook\GraphNodes\GraphPage */
             if ($mixed->getField("id")) {
                 $string = '<a href="' . $this->view->url("graphnode", array("id" => $mixed->getField("id"))) . '">' . $mixed->getField("name") . '</a>';
-            }
-            else{
+            } else {
                 $string = $mixed->getName();
             }
             //$string = '<a href="' . $this->view->url("graphnode", array("id" => $mixed->getField("id"))) . '">' . $mixed->getField("name") . '</a>';
         } else if (is_a($mixed, \Facebook\GraphNodes\GraphLocation::class)) {
             /* @var $mixed \Facebook\GraphNodes\GraphLocation */
-            $string = '<a href="' . $this->view->url("graphnode", array("id" => $mixed->getField("id"))) . '">' . $mixed->getField("name") . '</a>';
+            $string = $this->view->graphlocation($mixed);
+            //$string = '<a href="' . $this->view->url("graphnode", array("id" => $mixed->getField("id"))) . '">' . $mixed->getField("name") . 's</a>';
         } else if (is_a($mixed, \Facebook\GraphNodes\GraphNode::class)) {
             /* @var $mixed \Facebook\GraphNodes\GraphNode */
+            $string="";$title = $mixed->getField("id");
+            if($mixed->getField("name")){
+                $title = $mixed->getField("name");
+            }
+            else if($mixed->getField("title")){
+                $title = $mixed->getField("title");
+            }
             if ($fieldname == "shares") {
                 //todo
-                $string = $mixed->getField("count");
-            } elseif ($mixed->getField("id")) {
-                $string = '<a href="' . $this->view->url("graphnode", array("id" => $mixed->getField("id"))) . '">' . $mixed->getField("name") . '</a>';
-            } elseif ($fieldname == "images222222222") {
-                //Array if Platform Image Source
-
-                $string = $this->view->graphdump($mixed);
-                //var_dump($mixed->asArray());die();
-            } else {
-                $string = "";//$this->view->graphdump($mixed);
-                var_dump($mixed);
-
-
+                $title = $mixed->getField("count");
             }
-        } elseif (is_a($mixed, \DateTime::class)) {
+
+            if(isset($title)){
+                if ($mixed->getField("id")) {
+                    $string = '<a href="' . $this->view->url("graphnode", array("id" => $mixed->getField("id"))) . '">' . $title . '</a><br>';
+                } else{
+                    $string = $title;
+                }
+            }
+            else{
+                var_dump($mixed);
+            }
+        } else if (is_a($mixed, \DateTime::class)) {
             /* @var $mixed \DateTime */
             $string = $mixed->format("d.m.y H:i");
         } else if ($fieldname == "picture") {
@@ -72,7 +81,6 @@ class GraphFieldHelper extends AbstractHelper
         } else if ($fieldname == "cover") {
             $string = '<img src="' . $mixed . '" class="img-responsive">';
         } else {
-
             switch (gettype($mixed)) {
                 case "boolean":
                     $string = ($mixed) ? 'true' : 'false';
@@ -85,16 +93,12 @@ class GraphFieldHelper extends AbstractHelper
                     break;
                 case "double":
                 case "float":
-                    $string = $mixed."";
+                    $string = $mixed . "";
                     break;
                 default:
-                    $string =gettype($mixed);
+                    $string = gettype($mixed);
                     var_dump($mixed);
             }
-            //todo better
-            //var_dump($mixed);
-            //echo gettype($mixed);
-            //$string = $mixed->asJson();
         }
 
         //var_dump($mixed);

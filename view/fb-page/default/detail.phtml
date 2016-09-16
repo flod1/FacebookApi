@@ -17,7 +17,7 @@
         <tr>
             <td><? echo $fieldName; ?></td>
             <td>
-                <? echo $this->graphhelper($item->getField($fieldName)); ?>&nbsp;
+                <? echo $this->graphfield($fieldName,$item->getField($fieldName)); ?>&nbsp;
             </td>
         </tr>
         <?

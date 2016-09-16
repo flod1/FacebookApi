@@ -8,33 +8,35 @@
 
 namespace FbBasic\GraphNodes;
 
-use Facebook\GraphNodes\GraphAlbum;
+use Facebook\GraphNodes\GraphEvent;
 
-class Album extends GraphAlbum implements GraphInterface
+class Event extends GraphEvent implements GraphInterface
 {
     protected static $graphObjectFields = array(
         "id",
         "name",
         "description",
-        "cover_photo",
-        "event",
-        "location",
-        "type",
+        "attending_count",
+        "declined_count",
+        "interested_count",
+        "maybe_count",
+        "noreply_count",
+        "cover",
+        "owner",
         "place",
-        "count",
-        "photo_count",
-        "video_count"
+        "type",
+        "start_time",
+        "end_time"
     );
 
     /**
-     * @var array Maps object key names to Graph object types.
+     * @var array Maps object key names to GraphNode types.
      */
     protected static $graphObjectMap = [
-        'from' => '\Facebook\GraphNodes\GraphUser',
+        'cover' => '\Facebook\GraphNodes\GraphCoverPhoto',
         'place' => '\Facebook\GraphNodes\GraphPage',
-        'picture' => '\FbBasic\GraphNodes\Picture',
-        'photos' => '\FbBasic\GraphNodes\Photo',
-        //'cover_photo' => '\FbBasic\GraphNodes\Photo',
+        'picture' => '\Facebook\GraphNodes\GraphPicture',
+        'parent_group' => '\Facebook\GraphNodes\GraphGroup',
     ];
 
     /**

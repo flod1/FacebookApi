@@ -17,7 +17,7 @@
         <tr>
             <td><? echo $fieldName; ?></td>
             <td>
-                <? echo $this->graphhelper($item->getField($fieldName)); ?>&nbsp;
+                <? echo $this->graphfield($fieldName,$item->getField($fieldName)); ?>&nbsp;
             </td>
         </tr>
         <?
@@ -35,7 +35,7 @@
             ?>
             <div class="col-xs-4 col-md-2">
                 <a href="#" class="thumbnail">
-                    <? echo $this->graphhelper($item); ?>
+                    <? echo $this->graphfield($item); ?>
                 </a>
             </div>
             <?
