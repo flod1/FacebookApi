@@ -37,6 +37,28 @@ class Event extends GraphEvent implements GraphInterface
         'place' => '\Facebook\GraphNodes\GraphPage',
         'picture' => '\Facebook\GraphNodes\GraphPicture',
         'parent_group' => '\Facebook\GraphNodes\GraphGroup',
+
+        'photos' => '\FbBasic\GraphNodes\Photo',
+        'attending' => '\FbBasic\GraphNodes\User',
+        'declined' => '\FbBasic\GraphNodes\User',
+        'interested' => '\FbBasic\GraphNodes\User',
+        'maybe' => '\FbBasic\GraphNodes\User',
+        'noreply' => '\FbBasic\GraphNodes\User',
+        'admins' => '\FbBasic\GraphNodes\User',
+    ];
+
+    /**
+     * @var array Maps object key names to Graph object types.
+     */
+    protected static $graphObjectEdgesMap = [
+        'photos' => '\FbBasic\GraphNodes\Photo',
+        'attending' => '\FbBasic\GraphNodes\User',
+        'declined' => '\FbBasic\GraphNodes\User',
+        'interested' => '\FbBasic\GraphNodes\User',
+        'maybe' => '\FbBasic\GraphNodes\User',
+        'noreply' => '\FbBasic\GraphNodes\User',
+        'admins' => '\FbBasic\GraphNodes\User',
+        //'videos' => '\FbBasic\GraphNodes\Video',
     ];
 
     /**

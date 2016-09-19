@@ -8,13 +8,25 @@
 
 namespace FbBasic\GraphNodes;
 
-use Facebook\GraphNodes\GraphUser;
+use Facebook\GraphNodes\GraphNode;
 
-class User extends GraphUser implements GraphInterface
+class Post extends GraphNode implements GraphInterface
 {
     protected static $graphObjectFields = [
         "id",
-        "name"
+        "description",
+        "created_time",
+        "from",
+        "name",
+        "picture",
+        "type",
+        "place",
+        "message",
+        "actions",
+        "link",
+        "targeting",
+        "feed_targeting",
+        "story"
     ];
 
     /**

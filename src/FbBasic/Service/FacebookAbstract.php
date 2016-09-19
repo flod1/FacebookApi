@@ -94,7 +94,7 @@ class FacebookAbstract implements ServiceManagerAwareInterface
 
         $response = $this->get($endpoint);
 
-        return $response->getGraphEdge($subclassname);
+        return $response->getGraphEdge($subclassname, false);
 
     }
 

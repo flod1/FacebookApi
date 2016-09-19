@@ -10,7 +10,7 @@ namespace FbBasic\GraphNodes;
 
 use Facebook\GraphNodes\GraphNode;
 
-class PlatformImageSource extends GraphNode implements GraphInterface
+class PlatformImageSource extends GraphNode
 {
 
     protected static $graphObjectFields = [

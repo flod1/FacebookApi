@@ -28,7 +28,7 @@ class Page extends GraphPage
         "start_info",
         "username",
         "website",
-        "current_location"
+        "current_location",
     ];
 
     /**
@@ -39,12 +39,14 @@ class Page extends GraphPage
         'global_brand_parent_page' => '\Facebook\GraphNodes\GraphPage',
         'location' => '\FbBasic\GraphNodes\Location',
         'cover' => '\Facebook\GraphNodes\GraphCoverPhoto',
-        'picture' => '\Facebook\GraphNodes\GraphPicture',
+        'picture' => '\FbBasic\GraphNodes\Picture',
 
         'albums' => '\FbBasic\GraphNodes\Album',
         'events' => '\FbBasic\GraphNodes\Event',
         'milestones' => '\FbBasic\GraphNodes\Milestone',
         'videos' => '\FbBasic\GraphNodes\Video',
+        'photos' => '\FbBasic\GraphNodes\Photo',
+        'feed' => '\FbBasic\GraphNodes\Post',
     ];
 
     /**
@@ -55,6 +57,8 @@ class Page extends GraphPage
         'events' => '\FbBasic\GraphNodes\Event',
         'milestones' => '\FbBasic\GraphNodes\Milestone',
         'videos' => '\FbBasic\GraphNodes\Video',
+        'photos' => '\FbBasic\GraphNodes\Photo',
+        'feed' => '\FbBasic\GraphNodes\Post',
     ];
 
     /**

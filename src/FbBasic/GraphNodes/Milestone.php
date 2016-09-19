@@ -21,6 +21,13 @@ class Milestone extends GraphNode implements GraphInterface
         "end_time"
     ];
 
+
+    /**
+     * @var array Maps object key names to Graph object types.
+     */
+    protected static $graphObjectEdgesMap = [
+    ];
+
     /**
      * Getter for $graphObjectFields.
      *

@@ -33,8 +33,25 @@ class Album extends GraphAlbum implements GraphInterface
         'from' => '\Facebook\GraphNodes\GraphUser',
         'place' => '\Facebook\GraphNodes\GraphPage',
         'picture' => '\FbBasic\GraphNodes\Picture',
+        'cover_photo' => '\FbBasic\GraphNodes\Photo',
+
         'photos' => '\FbBasic\GraphNodes\Photo',
-        //'cover_photo' => '\FbBasic\GraphNodes\Photo',
+        'likes' => '\FbBasic\GraphNodes\User',
+        'reactions' => '\FbBasic\GraphNodes\User',
+        'comments' => '\FbBasic\GraphNodes\Comment',
+        'sharedposts' => '\FbBasic\GraphNodes\Post',
+    ];
+
+
+    /**
+     * @var array Maps object key names to Graph object types.
+     */
+    protected static $graphObjectEdgesMap = [
+        'photos' => '\FbBasic\GraphNodes\Photo',
+        'likes' => '\FbBasic\GraphNodes\User',
+        'reactions' => '\FbBasic\GraphNodes\User',
+        'comments' => '\FbBasic\GraphNodes\Comment',
+        'sharedposts' => '\FbBasic\GraphNodes\Post',
     ];
 
     /**

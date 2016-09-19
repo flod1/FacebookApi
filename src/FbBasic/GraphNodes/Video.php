@@ -27,6 +27,12 @@ class Video extends GraphNode implements GraphInterface
     ];
 
     /**
+     * @var array Maps object key names to Graph object types.
+     */
+    protected static $graphObjectEdgesMap = [
+    ];
+
+    /**
      * Getter for $graphObjectFields.
      *
      * @return array

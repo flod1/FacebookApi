@@ -31,7 +31,23 @@ class Photo extends GraphNode implements GraphInterface
      * @var array Maps object key names to Graph object types.
      */
     protected static $graphObjectMap = [
-        //'images' => '\FbBasic\GraphNodes\PlatformImageSource',
+        'images' => '\FbBasic\GraphNodes\PlatformImageSource',
+
+        'likes' => '\FbBasic\GraphNodes\User',
+        'reactions' => '\FbBasic\GraphNodes\User',
+        'tags' => '\FbBasic\GraphNodes\User',
+        'comments' => '\FbBasic\GraphNodes\Comment',
+    ];
+
+
+    /**
+     * @var array Maps object key names to Graph object types.
+     */
+    protected static $graphObjectEdgesMap = [
+        'likes' => '\FbBasic\GraphNodes\User',
+        'reactions' => '\FbBasic\GraphNodes\User',
+        'tags' => '\FbBasic\GraphNodes\User',
+        'comments' => '\FbBasic\GraphNodes\Comment',
     ];
 
     /**
@@ -42,6 +58,15 @@ class Photo extends GraphNode implements GraphInterface
     public static function getObjectFields()
     {
         return static::$graphObjectFields;
+    }
+    /**
+     * Getter for $graphObjectEdgesMap.
+     *
+     * @return array
+     */
+    public static function getObjectEdges()
+    {
+        return static::$graphObjectEdgesMap;
     }
 
 }

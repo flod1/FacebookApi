@@ -15,6 +15,9 @@ class Picture extends GraphPicture implements GraphInterface
 
     protected static $graphObjectFields = [
         "url",
+        "height",
+        "width",
+        "is_silhouette",
     ];
 
     /**
@@ -25,5 +28,19 @@ class Picture extends GraphPicture implements GraphInterface
     public static function getObjectFields()
     {
         return static::$graphObjectFields;
+    }
+    /**
+     * Getter for $graphObjectEdgesMap.
+     *
+     * @return array
+     */
+    public static function getObjectEdges()
+    {
+        if(static::$graphObjectEdgesMap){
+            return static::$graphObjectEdgesMap;
+        }
+        else{
+            return array();
+        }
     }
 }
