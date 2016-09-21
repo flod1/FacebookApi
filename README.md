@@ -94,17 +94,17 @@ Examples for a Facebookpage
 * Fetch a Facebook GraphNode ( Event, Page, Album, Post, Photo, etc)
 
 ```php
-<?php echo $this->graphwidget->fetchEvent($eventid,$fields)->setTemplate("widget/default/detail.phtml");
+<?php= $this->graphwidget->fetchEvent($eventid,$fields)->setTemplate("widget/default/detail.phtml");
 ```
 
 * Fetch Facebook GraphEdge by a Node ( Events, Albums, Posts, Photos, Milestones etc)
 
 ```php
-<?php echo $this->graphwidget->fetchEvents($nodeid,$fields,$limit)->setTemplate("widget/default/table.phtml");
+<?php= $this->graphwidget->fetchEvents($nodeid,$fields,$limit)->setTemplate("widget/default/table.phtml");
 ```
 
 * pagewidget - Fetch Childs from a page. e.x albums, events, posts
 
 ```php
-<?php echo $this->pagewidget->fetchAlbums($fields,$limit)->setTemplate("widget/default/table.phtml");
+<?php= $this->pagewidget->fetchAlbums($fields,$limit)->setTemplate("widget/default/table.phtml");
 ```
