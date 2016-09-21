@@ -15,16 +15,29 @@ class GraphFieldHelper extends AbstractHelper
 {
     /**
      * @param $fieldname string
-     * @param $mixed \Facebook\GraphNodes\GraphNode
+     * @param $mixed \Facebook\GraphNodes\GraphNode | \Facebook\GraphNodes\GraphEdge
      * @return string
      */
     public function __invoke($fieldname, $mixed)
     {
+        //var_dump($mixed);
         if (is_null($mixed)) {
             $string = "null";
         } else if (is_a($mixed, \Facebook\GraphNodes\GraphEdge::class)) {
             /* @var $mixed \Facebook\GraphNodes\GraphEdge */
             $string = $this->view->graphedge($mixed);
+        } else if (is_a($mixed, \FbBasic\GraphList\PlatformImageSources::class)) {
+            /* @var $mixed \FbBasic\GraphNodes\PlatformImageSources */
+            $string = $this->view->graphedge($mixed);
+        } else if (is_a($mixed, \FbBasic\GraphNodes\Attachment::class)) {
+            /* @var $mixed \FbBasic\GraphNodes\Attachment */
+            $string = $this->view->graphattachment($mixed);
+        } else if (is_a($mixed, \FbBasic\GraphNodes\StoryAttachmentMedia::class)) {
+            /* @var $mixed \FbBasic\GraphNodes\StoryAttachmentMedia */
+            $string = $this->view->graphattachment($mixed);
+        } else if (is_a($mixed, \FbBasic\GraphNodes\PlatformImageSources::class)) {
+            /* @var $mixed \FbBasic\GraphNodes\PlatformImageSource */
+            $string = $this->view->graphimage($mixed);
         } else if (is_a($mixed, \FbBasic\GraphNodes\Photo::class)) {
             /* @var $mixed \FbBasic\GraphNodes\Photo */
             $string = $this->view->graphphoto($mixed);
@@ -60,6 +73,10 @@ class GraphFieldHelper extends AbstractHelper
                 //todo
                 $title = $mixed->getField("count");
             }
+            if ($fieldname == "actions") {
+                //todo
+                //var_dump($mixed->asArray());
+            }
 
             if(isset($title)){
                 if ($mixed->getField("id")) {
@@ -71,6 +88,7 @@ class GraphFieldHelper extends AbstractHelper
             else{
                 var_dump($mixed);
             }
+
         } else if (is_a($mixed, \DateTime::class)) {
             /* @var $mixed \DateTime */
             $string = $mixed->format("d.m.y H:i");

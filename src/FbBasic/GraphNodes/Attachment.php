@@ -8,27 +8,26 @@
 
 namespace FbBasic\GraphNodes;
 
-use Facebook\GraphNodes\GraphUser;
+use Facebook\GraphNodes\GraphPicture;
 
-class User extends GraphUser implements GraphInterface
+class Attachment extends GraphPicture implements GraphInterface
 {
+
     protected static $graphObjectFields = [
-        "id",
-        "picture",
-        "name"
+        "description",
+        "description_tags",
+        "media",
+        "target",
+        "title",
+        "type",
+        "url",
     ];
 
     /**
      * @var array Maps object key names to Graph object types.
      */
     protected static $graphObjectMap = [
-        'picture' => '\FbBasic\GraphNodes\Picture',
-    ];
-
-    /**
-     * @var array Maps object key names to Graph object types.
-     */
-    protected static $graphObjectEdgesMap = [
+        'media' => '\FbBasic\GraphNodes\StoryAttachmentMedia',
     ];
 
     /**
@@ -47,7 +46,11 @@ class User extends GraphUser implements GraphInterface
      */
     public static function getObjectEdges()
     {
-        return static::$graphObjectEdgesMap;
+        if(static::$graphObjectEdgesMap){
+            return static::$graphObjectEdgesMap;
+        }
+        else{
+            return array();
+        }
     }
-
 }

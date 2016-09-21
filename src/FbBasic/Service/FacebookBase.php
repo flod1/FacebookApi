@@ -161,7 +161,8 @@ class FacebookBase extends FacebookAbstract implements ServiceManagerAwareInterf
         $parameters = array("fields"=>$fields);
         $response = $this->fetchGraphNode($groupid, $parameters);
 
-        return $response->getGraphNode();
+        $factory = new GraphNodeFactory($response);
+        return $factory->makeGraphNode(\FbBasic\GraphNodes\Group::class);
     }
 
     /**
@@ -192,11 +193,11 @@ class FacebookBase extends FacebookAbstract implements ServiceManagerAwareInterf
     public function fetchAlbums($nodeid,$fields=null,$limit=100)
     {
         if ($fields == "*") {
-            $fields = $this::ALL_ALBUM_FIELDS;
+            //$fields = $this::ALL_ALBUM_FIELDS;
             //$subclass::getObjectFields();
             $fields = $this->getObjectFields(\FbBasic\GraphNodes\Album::class,false);
         }
-        return $this->fetchGraphEdge($nodeid,'albums','GraphAlbum',array("fields"=>$fields,"limit"=>$limit));
+        return $this->fetchGraphEdge($nodeid,'albums',\FbBasic\GraphNodes\Album::class,array("fields"=>$fields,"limit"=>$limit));
     }
 
     /**
@@ -226,7 +227,37 @@ class FacebookBase extends FacebookAbstract implements ServiceManagerAwareInterf
             //$fields = $this::ALL_VIDEO_FIELDS;
             $fields = $this->getObjectFields(\FbBasic\GraphNodes\User::class);
         }
-        return $this->fetchGraphEdge($nodeid,'likes',null,array("fields"=>$fields,"limit"=>$limit));
+        return $this->fetchGraphEdge($nodeid,'likes',\FbBasic\GraphNodes\User::class,array("fields"=>$fields,"limit"=>$limit));
+    }
+
+    /**
+     * @param int $nodeid
+     * @param string $fields
+     * @param int $limit
+     * @return array of \Facebook\GraphNodes\GraphNode
+     */
+    public function fetchReactions($nodeid,$fields=null,$limit=100)
+    {
+        if ($fields == "*") {
+            //$fields = $this::ALL_VIDEO_FIELDS;
+            $fields = $this->getObjectFields(\FbBasic\GraphNodes\User::class);
+        }
+        return $this->fetchGraphEdge($nodeid,'likes',\FbBasic\GraphNodes\User::class,array("fields"=>$fields,"limit"=>$limit));
+    }
+
+    /**
+     * @param int $nodeid
+     * @param string $fields
+     * @param int $limit
+     * @return array of \Facebook\GraphNodes\GraphNode
+     */
+    public function fetchAttachments($nodeid,$fields=null,$limit=100)
+    {
+        if ($fields == "*") {
+            //$fields = $this::ALL_VIDEO_FIELDS;
+            $fields = $this->getObjectFields(\FbBasic\GraphNodes\Attachment::class);
+        }
+        return $this->fetchGraphEdge($nodeid,'attachments',\FbBasic\GraphNodes\Attachment::class,array("fields"=>$fields,"limit"=>$limit));
     }
 
     /**
@@ -256,7 +287,7 @@ class FacebookBase extends FacebookAbstract implements ServiceManagerAwareInterf
             //$fields = $this::ALL_EVENT_FIELDS;
             $fields = $this->getObjectFields(\FbBasic\GraphNodes\Event::class,false);
         }
-        return $this->fetchGraphEdge($nodeid,'events','GraphEvent',array("fields"=>$fields,"limit"=>$limit));
+        return $this->fetchGraphEdge($nodeid,'events',\FbBasic\GraphNodes\Event::class,array("fields"=>$fields,"limit"=>$limit));
     }
 
     /**
@@ -285,10 +316,7 @@ class FacebookBase extends FacebookAbstract implements ServiceManagerAwareInterf
      */
     public function fetchLikesByVideo($videoid,$fields=null,$limit=100)
     {
-        if ($fields == "*") {
-            //$fields = $this::ALL_VIDEO_FIELDS;
-        }
-        return $this->fetchGraphEdge($videoid,'likes',null,array("fields"=>$fields,"limit"=>$limit));
+        return $this->fetchLikes($videoid,$fields,$limit);
     }
 
     /**
@@ -312,8 +340,9 @@ class FacebookBase extends FacebookAbstract implements ServiceManagerAwareInterf
     {
         if ($fields == "*") {
             //$fields = $this::ALL_VIDEO_FIELDS;
+            $fields = $this->getObjectFields(\FbBasic\GraphNodes\Comment::class,false);
         }
-        return $this->fetchGraphEdge($nodeid,'comments',null,array("fields"=>$fields,"limit"=>$limit));
+        return $this->fetchGraphEdge($nodeid,'comments',\FbBasic\GraphNodes\Comment::class,array("fields"=>$fields,"limit"=>$limit));
     }
 
     /**
@@ -397,7 +426,7 @@ class FacebookBase extends FacebookAbstract implements ServiceManagerAwareInterf
             //$fields = $this::ALL_MILESTONE_FIELDS;
             $fields = $this->getObjectFields(\FbBasic\GraphNodes\Milestone::class);
         }
-        return $this->fetchGraphEdge($nodeid,'milestones',null,array("fields"=>$fields,"limit"=>$limit));
+        return $this->fetchGraphEdge($nodeid,'milestones',\FbBasic\GraphNodes\Milestone::class,array("fields"=>$fields,"limit"=>$limit));
     }
 
     /**

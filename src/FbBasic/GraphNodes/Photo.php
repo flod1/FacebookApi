@@ -31,7 +31,7 @@ class Photo extends GraphNode implements GraphInterface
      * @var array Maps object key names to Graph object types.
      */
     protected static $graphObjectMap = [
-        'images' => '\FbBasic\GraphNodes\PlatformImageSource',
+        'images' => '\FbBasic\GraphList\PlatformImageSources',
 
         'likes' => '\FbBasic\GraphNodes\User',
         'reactions' => '\FbBasic\GraphNodes\User',

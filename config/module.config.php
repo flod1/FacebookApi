@@ -71,6 +71,8 @@ return array(
             'graphnode' => 'FbBasic\View\Helper\GraphNodeHelper',
             'graphedge' => 'FbBasic\View\Helper\GraphEdgeHelper',
             'graphdump' => 'FbBasic\View\Helper\GraphDumpHelper',
+            'graphattachment' => 'FbBasic\View\Helper\GraphAttachmentHelper',
+            'graphimage' => 'FbBasic\View\Helper\GraphImageHelper',
             'graphfield' => 'FbBasic\View\Helper\GraphFieldHelper'
 
         ),

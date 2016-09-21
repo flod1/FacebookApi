@@ -29,7 +29,22 @@ class Video extends GraphNode implements GraphInterface
     /**
      * @var array Maps object key names to Graph object types.
      */
+    protected static $graphObjectMap = [
+        'from' => '\FbBasic\GraphNodes\User',
+        'likes' => '\FbBasic\GraphNodes\User',
+        'reactions' => '\FbBasic\GraphNodes\User',
+        'comments' => '\FbBasic\GraphNodes\Comment',
+        'sharedposts' => '\FbBasic\GraphNodes\Post'
+    ];
+
+    /**
+     * @var array Maps object key names to Graph object types.
+     */
     protected static $graphObjectEdgesMap = [
+        'likes' => '\FbBasic\GraphNodes\User',
+        'reactions' => '\FbBasic\GraphNodes\User',
+        'comments' => '\FbBasic\GraphNodes\Comment',
+        'sharedposts' => '\FbBasic\GraphNodes\Post'
     ];
 
     /**

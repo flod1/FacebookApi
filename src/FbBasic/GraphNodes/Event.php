@@ -45,6 +45,7 @@ class Event extends GraphEvent implements GraphInterface
         'maybe' => '\FbBasic\GraphNodes\User',
         'noreply' => '\FbBasic\GraphNodes\User',
         'admins' => '\FbBasic\GraphNodes\User',
+        'comments' => '\FbBasic\GraphNodes\Comment',
     ];
 
     /**
@@ -58,6 +59,7 @@ class Event extends GraphEvent implements GraphInterface
         'maybe' => '\FbBasic\GraphNodes\User',
         'noreply' => '\FbBasic\GraphNodes\User',
         'admins' => '\FbBasic\GraphNodes\User',
+        'comments' => '\FbBasic\GraphNodes\Comment',
         //'videos' => '\FbBasic\GraphNodes\Video',
     ];
 

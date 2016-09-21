@@ -47,6 +47,7 @@ class Page extends GraphPage
         'videos' => '\FbBasic\GraphNodes\Video',
         'photos' => '\FbBasic\GraphNodes\Photo',
         'feed' => '\FbBasic\GraphNodes\Post',
+        'likes' => '\FbBasic\GraphNodes\User',
     ];
 
     /**
@@ -59,6 +60,7 @@ class Page extends GraphPage
         'videos' => '\FbBasic\GraphNodes\Video',
         'photos' => '\FbBasic\GraphNodes\Photo',
         'feed' => '\FbBasic\GraphNodes\Post',
+        'likes' => '\FbBasic\GraphNodes\User',
     ];
 
     /**

@@ -14,7 +14,7 @@ class GraphEdgeHelper extends AbstractHelper
 {
     public function __invoke($mixed)
     {
-        if(is_a($mixed,GraphNodes\GraphEdge::class)){
+        //if(is_a($mixed,GraphNodes\GraphEdge::class)){
             $string = "";
             /* @var $mixed \Facebook\GraphNodes\GraphEdge */
             foreach($mixed AS $item){
@@ -26,7 +26,7 @@ class GraphEdgeHelper extends AbstractHelper
 
             }
 
-        }
+        //}
         return $string;
     }
 }

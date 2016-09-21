@@ -7,6 +7,7 @@
  * Time: 15:06
  */
 namespace FbBasic\View\Helper;
+
 use Zend\View\Helper\AbstractHelper;
 use FbBasic\GraphNodes;
 
@@ -14,15 +15,26 @@ class GraphPhotoHelper extends AbstractHelper
 {
     public function __invoke($mixed)
     {
-        if(is_a($mixed,GraphNodes\Photo::class)){
+        $content = "";
+        if (is_a($mixed, GraphNodes\Photo::class)) {
             /* @var $mixed \FbBasic\GraphNodes\Photo */
-            $image = '<img src="'.$mixed->getField('picture').'" class="img-responsive">';
             if ($mixed->getField("id")) {
-                $string = '<a href="' . $this->view->url("graphnode", array("id" => $mixed->getField("id"))) . '">' . $image . '</a>';
+                $content = $mixed->getField("id");
+            }
+            if ($mixed->getField("name")) {
+                $content = $mixed->getField("name");
+            }
+            if ($mixed->getField("picture")) {
+                $content = '<img src="' . $mixed->getField('picture') . '" class="img-responsive">';
+            }
+
+            if ($mixed->getField("id")) {
+                $string = '<a href="' . $this->view->url("graphnode", array("id" => $mixed->getField("id"))) . '">' . $content . '</a>';
             } else {
-                $string = $image;
+                $string = $content;
             }
         }
+        //var_dump($mixed);
         return $string;
     }
 }

@@ -8,27 +8,16 @@
 
 namespace FbBasic\GraphNodes;
 
-use Facebook\GraphNodes\GraphUser;
+use Facebook\GraphNodes\GraphLocation;
 
-class User extends GraphUser implements GraphInterface
+class CoverPhoto extends GraphLocation implements GraphInterface
 {
     protected static $graphObjectFields = [
         "id",
-        "picture",
-        "name"
-    ];
-
-    /**
-     * @var array Maps object key names to Graph object types.
-     */
-    protected static $graphObjectMap = [
-        'picture' => '\FbBasic\GraphNodes\Picture',
-    ];
-
-    /**
-     * @var array Maps object key names to Graph object types.
-     */
-    protected static $graphObjectEdgesMap = [
+        "city",
+        "source",
+        "offset_y",
+        "offset_x"
     ];
 
     /**

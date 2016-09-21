@@ -29,7 +29,17 @@ class Group extends GraphGroup implements GraphInterface
      * @var array Maps object key names to Graph object types.
      */
     protected static $graphObjectMap = [
+        'cover' => '\FbBasic\GraphNodes\CoverPhoto',
         'albums' => '\FbBasic\GraphNodes\Album',
+        'members' => '\FbBasic\GraphNodes\User',
+    ];
+
+    /**
+     * @var array Maps object key names to Graph object types.
+     */
+    protected static $graphObjectEdgesMap = [
+        'albums' => '\FbBasic\GraphNodes\Album',
+        'members' => '\FbBasic\GraphNodes\User',
     ];
 
     /**
@@ -40,6 +50,15 @@ class Group extends GraphGroup implements GraphInterface
     public static function getObjectFields()
     {
         return static::$graphObjectFields;
+    }
+    /**
+     * Getter for $graphObjectEdgesMap.
+     *
+     * @return array
+     */
+    public static function getObjectEdges()
+    {
+        return static::$graphObjectEdgesMap;
     }
 
 }

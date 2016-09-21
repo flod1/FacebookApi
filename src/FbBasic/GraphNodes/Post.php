@@ -26,13 +26,31 @@ class Post extends GraphNode implements GraphInterface
         "link",
         "targeting",
         "feed_targeting",
-        "story"
+        "story",
+        "attachments"
+    ];
+
+    /**
+     * @var array Maps object key names to Graph object types.
+     */
+    protected static $graphObjectMap = [
+        'from' => '\Facebook\GraphNodes\GraphUser',
+        'likes' => '\FbBasic\GraphNodes\User',
+        'reactions' => '\FbBasic\GraphNodes\User',
+        'comments' => '\FbBasic\GraphNodes\Comment',
+        'sharedposts' => '\FbBasic\GraphNodes\Post',
+        'attachments' => '\FbBasic\GraphNodes\Attachment',
     ];
 
     /**
      * @var array Maps object key names to Graph object types.
      */
     protected static $graphObjectEdgesMap = [
+        'likes' => '\FbBasic\GraphNodes\User',
+        'reactions' => '\FbBasic\GraphNodes\User',
+        'comments' => '\FbBasic\GraphNodes\Comment',
+        'sharedposts' => '\FbBasic\GraphNodes\Post',
+        'attachments' => '\FbBasic\GraphNodes\Attachment',
     ];
 
     /**
