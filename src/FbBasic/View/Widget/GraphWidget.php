@@ -29,6 +29,13 @@ class GraphWidget extends BasicWidget
         return $this;
     }
 
+    public function fetchEvents($nodeid,$fields=null,$limit=25)
+    {
+        $this->results = $this->facebookBaseService->fetchEvents($nodeid, $fields,$limit);
+
+        return $this;
+    }
+
     public function fetchEvent($eventid,$fields=null)
     {
         $this->results = $this->facebookBaseService->fetchEvent($eventid, $fields);

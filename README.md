@@ -84,21 +84,27 @@ Examples for a Facebookpage
 ### Pages
 
 * Overview Page Content  `http://domain.dev/dashboard`
-* Widget Examples `http://domain.dev/examples`
+* Widget Examples `http://domain.dev/widget`
 * List all Albums `http://domain.dev/albums`
 * List all Events `http://domain.dev/events`
 * List all Posts `http://domain.dev/posts`
 
-### Widgets
+### Graph Widgets
 
-* graphwidget - Fetch a Facebook GraphNode
+* Fetch a Facebook GraphNode ( Event, Page, Album, Post, Photo, etc)
 
 ```php
 <?php echo $this->graphwidget->fetchEvent($eventid,$fields)->setTemplate("widget/default/detail.phtml");
 ```
 
+* Fetch Facebook GraphEdge by a Node ( Events, Albums, Posts, Photos, Milestones etc)
+
+```php
+<?php echo $this->graphwidget->fetchEvents($nodeid,$fields,$limit)->setTemplate("widget/default/table.phtml");
+```
+
 * pagewidget - Fetch Childs from a page. e.x albums, events, posts
 
 ```php
-<?php echo $pagewidget->fetchAlbums($fields,$limit)->setTemplate("widget/default/table.phtml");
+<?php echo $this->pagewidget->fetchAlbums($fields,$limit)->setTemplate("widget/default/table.phtml");
 ```
