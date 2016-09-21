@@ -15,11 +15,11 @@
         $field = $item->getField($fieldName);
 
         if(is_object($field)){
-            $string = $item->asJson();
+            //$string = $item->asJson();
             $typeString = get_class($field);
         }
         else{
-            $string = $item->getField($fieldName);
+            //$string = $item->getField($fieldName);
             $typeString = gettype($field);
         }
         ?>
@@ -27,7 +27,7 @@
             <td><? echo $fieldName; ?></td>
             <td><? echo $typeString; ?></td>
             <td>
-                <? echo $this->graphdump($field); ?>&nbsp;
+                <? echo $this->graphdump($fieldName,$field); ?>&nbsp;
             </td>
         </tr>
         <?

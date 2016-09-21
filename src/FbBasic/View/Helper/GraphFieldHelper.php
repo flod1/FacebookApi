@@ -26,6 +26,7 @@ class GraphFieldHelper extends AbstractHelper
                 //case \Facebook\GraphNodes\GraphNode::class: $string = $this->view->graphnode($mixed);break;
                 case \Facebook\GraphNodes\GraphEdge::class: $string = $this->view->graphedge($mixed);break;
                 case \Facebook\GraphNodes\GraphCoverPhoto::class: $string = $this->view->graphcoverphoto($mixed);break;
+                case \Facebook\GraphNodes\GraphPage::class: $string = $this->view->graphnode($mixed);break;
                 case \FbBasic\GraphNodes\PageStartInfo::class: $string = $this->view->graphpagestartinfo($mixed);break;
                 case \FbBasic\GraphNodes\Picture::class: $string = $this->view->graphpicture($mixed);break;
                 case \FbBasic\GraphNodes\Location::class: $string = $this->view->graphlocation($mixed);break;
@@ -36,6 +37,8 @@ class GraphFieldHelper extends AbstractHelper
                 case \FbBasic\GraphNodes\Post::class: $string = $this->view->graphnode($mixed);break;
                 case \FbBasic\GraphNodes\User::class: $string = $this->view->graphnode($mixed);break;
                 case \FbBasic\GraphNodes\Comment::class: $string = $this->view->graphnode($mixed);break;
+                case \FbBasic\GraphNodes\Milestone::class: $string = $this->view->graphnode($mixed);break;
+                case \FbBasic\GraphNodes\Page::class: $string = $this->view->graphnode($mixed);break;
                 case \FbBasic\GraphNodes\Attachment::class: $string = $this->view->graphattachment($mixed);break;
                 case \FbBasic\GraphList\PlatformImageSources::class: $string = $this->view->graphimages($mixed);break;
                 case \DateTime::class: $string = $mixed->format("d.m.y H:i");break;

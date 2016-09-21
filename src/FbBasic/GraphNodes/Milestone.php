@@ -22,11 +22,14 @@ class Milestone extends GraphNode implements GraphInterface
     ];
 
 
+
     /**
      * @var array Maps object key names to Graph object types.
      */
-    protected static $graphObjectEdgesMap = [
+    protected static $graphObjectMap = [
+        'from' => '\FbBasic\GraphNodes\Page',
     ];
+
 
     /**
      * Getter for $graphObjectFields.

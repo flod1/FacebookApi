@@ -28,7 +28,7 @@
             foreach ($fieldnames AS $fieldName) {
                 ?>
                 <td>
-                    <? echo $this->graphfield($fieldName,$item->getField($fieldName)); ?>&nbsp;
+                    <? echo $this->graphdump($fieldName,$item->getField($fieldName)); ?>&nbsp;
                 </td>
                 <?
             }

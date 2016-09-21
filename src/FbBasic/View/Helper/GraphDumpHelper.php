@@ -11,51 +11,21 @@ use Zend\View\Helper\AbstractHelper;
 
 class GraphDumpHelper extends AbstractHelper
 {
-    public function __invoke($mixed)
+    public function __invoke($fieldname, $mixed)
     {
         if(is_null($mixed)){
             $string = "null";
         }
         elseif(is_object($mixed)){
-            if(is_subclass_of($mixed,\Facebook\GraphNodes\GraphNode::class) || is_a($mixed,\Facebook\GraphNodes\GraphNode::class)){
-                /* @var $mixed \Facebook\GraphNodes\GraphNode */
-                //$string =
-                if(is_a($mixed,\Facebook\GraphNodes\GraphCoverPhoto::class)){
-                    /* @var $mixed \Facebook\GraphNodes\GraphCoverPhoto */
-                    $string = $this->view->partial('widget/default/partial/dump.phtml', array("list"=>$mixed->asArray()));
-                }
-                else if(is_a($mixed,\Facebook\GraphNodes\GraphPicture::class)){
-                    /* @var $mixed \Facebook\GraphNodes\GraphPicture */
-                    $string = $this->view->partial('widget/default/partial/dump.phtml', array("list"=>$mixed->asArray()));
-                }
-                else if(is_a($mixed,\Facebook\GraphNodes\GraphPage::class)){
-                    /* @var $mixed \Facebook\GraphNodes\GraphPage */
-                    $string = $this->view->partial('widget/default/partial/dump.phtml', array("list"=>$mixed->asArray()));
-                }
-                else if(is_a($mixed,\Facebook\GraphNodes\GraphLocation::class)){
-                    /* @var $mixed \Facebook\GraphNodes\GraphLocation */
-                    $string = $this->view->partial('widget/default/partial/dump.phtml', array("list"=>$mixed->asArray()));
-                }
-                else if(is_a($mixed,\Facebook\GraphNodes\GraphNode::class)){
-                    /* @var $mixed \Facebook\GraphNodes\GraphNode */
-                    $string = $this->view->partial('widget/default/partial/dump.phtml', array("list"=>$mixed->asArray()));
-                }
-                else{
-                    var_dump($mixed);die();
-                }
-
-                //var_dump($mixed->asArray());die();
-
-
-
-            }
-            else if(is_a($mixed,\DateTime::class)){
+            if(is_a($mixed,\DateTime::class)){
                 /* @var $mixed \DateTime */
                 $string = $mixed->format("d.m.y H:i");
+                //var_dump($string);die();
             }
-            else  {
-                //var_dump($mixed);die();
-
+            else if(is_subclass_of($mixed,\Facebook\GraphNodes\GraphNode::class) || is_a($mixed,\Facebook\GraphNodes\GraphNode::class)){
+                /* @var $mixed \Facebook\GraphNodes\GraphNode */
+                $string = $this->view->partial('widget/default/partial/dump.phtml', array("list"=>$mixed->asArray()));
+                //var_dump($mixed->asArray());die();
             }
         }
         else{

@@ -18,6 +18,9 @@
     <tbody>
     <?
     foreach($list AS $key => $value){
+        if(is_object($value)){
+            $value = $this->graphdump(null,$value);
+        }
         if(is_array($value)){
             $value = $this->partial('widget/default/partial/dump.phtml', array("list"=>$value));
         }
