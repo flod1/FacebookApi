@@ -28,6 +28,8 @@ class Page extends GraphPage
         "start_info",
         "username",
         "website",
+        "hours",
+        "general_info",
         "current_location",
     ];
 
@@ -40,6 +42,8 @@ class Page extends GraphPage
         'location' => '\FbBasic\GraphNodes\Location',
         'cover' => '\Facebook\GraphNodes\GraphCoverPhoto',
         'picture' => '\FbBasic\GraphNodes\Picture',
+        'start_info' => '\FbBasic\GraphNodes\PageStartInfo',
+        'parking' => '\FbBasic\GraphNodes\PageParking',
 
         'albums' => '\FbBasic\GraphNodes\Album',
         'events' => '\FbBasic\GraphNodes\Event',

@@ -21,12 +21,14 @@ Features / Goals
 
 * Facebook Graph Api [COMPLETE]
 * Page Service Posts (List/Details) [INCOMPLETE]
+* Page Service Comments (List/Details) [INCOMPLETE]
+* Page Service Likes (List/Details) [INCOMPLETE]
+* Page Service Photos (List/Details) [INCOMPLETE]
 * Page Service Events (List/Details) [INCOMPLETE]
 * Page Service Album (List/Details) [INCOMPLETE]
 * Translate Route [COMPLETE]
 * Widgets 
 * Graph [INCOMPLETE]
-* Page  [TEST]
 
 Installation
 ------------
@@ -89,7 +91,7 @@ Examples for a Facebookpage
 * graphwidget - Fetch a Facebook GraphNode
 
 ```php
-<?php echo graphwidget->fetchEvent($eventid,$fields)->setTemplate("widget/default/detail.phtml");
+<?php echo $this->graphwidget->fetchEvent($eventid,$fields)->setTemplate("widget/default/detail.phtml");
 ```
 
 * pagewidget - Fetch Childs from a page. e.x albums, events, posts

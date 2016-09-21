@@ -28,7 +28,7 @@ class FacebookBase extends FacebookAbstract implements ServiceManagerAwareInterf
     /**
      * @param int $userid
      * @param string $fields
-     * @return \FbBasic\GraphNodes\Photo
+     * @return \FbBasic\GraphNodes\User
      */
     public function fetchUser($userid, $fields = null)
     {
@@ -372,7 +372,24 @@ class FacebookBase extends FacebookAbstract implements ServiceManagerAwareInterf
      */
     public function fetchInterestedsByEvent($eventid,$fields=null,$limit=100000)
     {
-        return $this->fetchGraphEdge($eventid,'interested',null,array("fields"=>$fields,"limit"=>$limit));
+        if ($fields == "*") {
+            $fields = $this->getObjectFields(\FbBasic\GraphNodes\User::class);
+        }
+        return $this->fetchGraphEdge($eventid,'interested',\FbBasic\GraphNodes\User::class,array("fields"=>$fields,"limit"=>$limit));
+    }
+
+    /**
+     * @param int $eventid
+     * @param string $fields
+     * @param int $limit
+     * @return \Facebook\GraphNodes\GraphEdge
+     */
+    public function fetchAdminsByEvent($eventid,$fields=null,$limit=100000)
+    {
+        if ($fields == "*") {
+            $fields = $this->getObjectFields(\FbBasic\GraphNodes\User::class);
+        }
+        return $this->fetchGraphEdge($eventid,'admins',\FbBasic\GraphNodes\User::class,array("fields"=>$fields,"limit"=>$limit));
     }
 
     /**
@@ -461,9 +478,9 @@ class FacebookBase extends FacebookAbstract implements ServiceManagerAwareInterf
                 }
             }
             */
-            var_dump($graphObjectMap);
+            //var_dump($graphObjectMap);
             //var_dump($graphObjectEdges);
-            var_dump($graphObjectFields);
+            //var_dump($graphObjectFields);
         }
 
         return implode(",",$graphObjectFields);

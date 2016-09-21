@@ -20,85 +20,36 @@ class GraphFieldHelper extends AbstractHelper
      */
     public function __invoke($fieldname, $mixed)
     {
-        //var_dump($mixed);
-        if (is_null($mixed)) {
-            $string = "null";
-        } else if (is_a($mixed, \Facebook\GraphNodes\GraphEdge::class)) {
-            /* @var $mixed \Facebook\GraphNodes\GraphEdge */
-            $string = $this->view->graphedge($mixed);
-        } else if (is_a($mixed, \FbBasic\GraphList\PlatformImageSources::class)) {
-            /* @var $mixed \FbBasic\GraphNodes\PlatformImageSources */
-            $string = $this->view->graphedge($mixed);
-        } else if (is_a($mixed, \FbBasic\GraphNodes\Attachment::class)) {
-            /* @var $mixed \FbBasic\GraphNodes\Attachment */
-            $string = $this->view->graphattachment($mixed);
-        } else if (is_a($mixed, \FbBasic\GraphNodes\StoryAttachmentMedia::class)) {
-            /* @var $mixed \FbBasic\GraphNodes\StoryAttachmentMedia */
-            $string = $this->view->graphattachment($mixed);
-        } else if (is_a($mixed, \FbBasic\GraphNodes\PlatformImageSources::class)) {
-            /* @var $mixed \FbBasic\GraphNodes\PlatformImageSource */
-            $string = $this->view->graphimage($mixed);
-        } else if (is_a($mixed, \FbBasic\GraphNodes\Photo::class)) {
-            /* @var $mixed \FbBasic\GraphNodes\Photo */
-            $string = $this->view->graphphoto($mixed);
-        } else if (is_a($mixed, \Facebook\GraphNodes\GraphCoverPhoto::class)) {
-            /* @var $mixed \Facebook\GraphNodes\GraphCoverPhoto */
-            $string = $this->view->graphcoverphoto($mixed);
-            //$string = '<a href="' . $this->view->url("graphnode", array("id" => $mixed->getField("id"))) . '">' . $this->view->graphcoverphoto($mixed) . '</a>';
-        } else if (is_a($mixed, \Facebook\GraphNodes\GraphPicture::class)) {
-            /* @var $mixed \Facebook\GraphNodes\GraphPicture */
-            $string = $this->view->graphpicture($mixed);
-        } else if (is_a($mixed, \Facebook\GraphNodes\GraphPage::class)) {
-            /* @var $mixed \Facebook\GraphNodes\GraphPage */
-            if ($mixed->getField("id")) {
-                $string = '<a href="' . $this->view->url("graphnode", array("id" => $mixed->getField("id"))) . '">' . $mixed->getField("name") . '</a>';
-            } else {
-                $string = $mixed->getName();
+        $string="";
+        if(is_object($mixed)){
+            switch(get_class($mixed)){
+                //case \Facebook\GraphNodes\GraphNode::class: $string = $this->view->graphnode($mixed);break;
+                case \Facebook\GraphNodes\GraphEdge::class: $string = $this->view->graphedge($mixed);break;
+                case \Facebook\GraphNodes\GraphCoverPhoto::class: $string = $this->view->graphcoverphoto($mixed);break;
+                case \FbBasic\GraphNodes\PageStartInfo::class: $string = $this->view->graphpagestartinfo($mixed);break;
+                case \FbBasic\GraphNodes\Picture::class: $string = $this->view->graphpicture($mixed);break;
+                case \FbBasic\GraphNodes\Location::class: $string = $this->view->graphlocation($mixed);break;
+                case \FbBasic\GraphNodes\Album::class: $string = $this->view->graphnode($mixed);break;
+                case \FbBasic\GraphNodes\Event::class: $string = $this->view->graphnode($mixed);break;
+                case \FbBasic\GraphNodes\Video::class: $string = $this->view->graphnode($mixed);break;
+                case \FbBasic\GraphNodes\Photo::class: $string = $this->view->graphnode($mixed);break;
+                case \FbBasic\GraphNodes\Post::class: $string = $this->view->graphnode($mixed);break;
+                case \FbBasic\GraphNodes\User::class: $string = $this->view->graphnode($mixed);break;
+                case \FbBasic\GraphNodes\Comment::class: $string = $this->view->graphnode($mixed);break;
+                case \FbBasic\GraphNodes\Attachment::class: $string = $this->view->graphattachment($mixed);break;
+                case \FbBasic\GraphList\PlatformImageSources::class: $string = $this->view->graphimages($mixed);break;
+                case \DateTime::class: $string = $mixed->format("d.m.y H:i");break;
+                default : var_dump(get_class($mixed));var_dump($mixed);
             }
-            //$string = '<a href="' . $this->view->url("graphnode", array("id" => $mixed->getField("id"))) . '">' . $mixed->getField("name") . '</a>';
-        } else if (is_a($mixed, \Facebook\GraphNodes\GraphLocation::class)) {
-            /* @var $mixed \Facebook\GraphNodes\GraphLocation */
-            $string = $this->view->graphlocation($mixed);
-            //$string = '<a href="' . $this->view->url("graphnode", array("id" => $mixed->getField("id"))) . '">' . $mixed->getField("name") . 's</a>';
-        } else if (is_a($mixed, \Facebook\GraphNodes\GraphNode::class)) {
-            /* @var $mixed \Facebook\GraphNodes\GraphNode */
-            $string="";$title = $mixed->getField("id");
-            if($mixed->getField("name")){
-                $title = $mixed->getField("name");
-            }
-            else if($mixed->getField("title")){
-                $title = $mixed->getField("title");
-            }
-            if ($fieldname == "shares") {
-                //todo
-                $title = $mixed->getField("count");
-            }
-            if ($fieldname == "actions") {
-                //todo
-                //var_dump($mixed->asArray());
-            }
-
-            if(isset($title)){
-                if ($mixed->getField("id")) {
-                    $string = '<a href="' . $this->view->url("graphnode", array("id" => $mixed->getField("id"))) . '">' . $title . '</a><br>';
-                } else{
-                    $string = $title;
-                }
-            }
-            else{
-                var_dump($mixed);
-            }
-
-        } else if (is_a($mixed, \DateTime::class)) {
-            /* @var $mixed \DateTime */
-            $string = $mixed->format("d.m.y H:i");
         } else if ($fieldname == "picture") {
             $string = '<img src="' . $mixed . '" class="img-responsive">';
         } else if ($fieldname == "icon") {
             $string = '<img src="' . $mixed . '" class="img-responsive">';
         } else if ($fieldname == "cover") {
             $string = '<img src="' . $mixed . '" class="img-responsive">';
-        } else {
+        } else if (is_null($mixed)) {
+                $string = "null";
+        }else{
             switch (gettype($mixed)) {
                 case "boolean":
                     $string = ($mixed) ? 'true' : 'false';
@@ -118,6 +69,8 @@ class GraphFieldHelper extends AbstractHelper
                     var_dump($mixed);
             }
         }
+
+
 
         //var_dump($mixed);
         return $string;

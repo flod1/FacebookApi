@@ -73,6 +73,8 @@ return array(
             'graphdump' => 'FbBasic\View\Helper\GraphDumpHelper',
             'graphattachment' => 'FbBasic\View\Helper\GraphAttachmentHelper',
             'graphimage' => 'FbBasic\View\Helper\GraphImageHelper',
+            'graphimages' => 'FbBasic\View\Helper\GraphImagesHelper',
+            'graphpagestartinfo' => 'FbBasic\View\Helper\GraphPageStartInfoHelper',
             'graphfield' => 'FbBasic\View\Helper\GraphFieldHelper'
 
         ),

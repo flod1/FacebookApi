@@ -37,6 +37,7 @@ class Event extends GraphEvent implements GraphInterface
         'place' => '\Facebook\GraphNodes\GraphPage',
         'picture' => '\Facebook\GraphNodes\GraphPicture',
         'parent_group' => '\Facebook\GraphNodes\GraphGroup',
+        'owner' => '\FbBasic\GraphNodes\User',
 
         'photos' => '\FbBasic\GraphNodes\Photo',
         'attending' => '\FbBasic\GraphNodes\User',
@@ -45,6 +46,7 @@ class Event extends GraphEvent implements GraphInterface
         'maybe' => '\FbBasic\GraphNodes\User',
         'noreply' => '\FbBasic\GraphNodes\User',
         'admins' => '\FbBasic\GraphNodes\User',
+        'roles' => '\FbBasic\GraphNodes\User',
         'comments' => '\FbBasic\GraphNodes\Comment',
     ];
 
@@ -59,6 +61,7 @@ class Event extends GraphEvent implements GraphInterface
         'maybe' => '\FbBasic\GraphNodes\User',
         'noreply' => '\FbBasic\GraphNodes\User',
         'admins' => '\FbBasic\GraphNodes\User',
+        'roles' => '\FbBasic\GraphNodes\User',
         'comments' => '\FbBasic\GraphNodes\Comment',
         //'videos' => '\FbBasic\GraphNodes\Video',
     ];

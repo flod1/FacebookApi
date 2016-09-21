@@ -25,7 +25,7 @@ class Comment extends GraphNode implements GraphInterface
      * @var array Maps object key names to Graph object types.
      */
     protected static $graphObjectMap = [
-        'from' => '\Facebook\GraphNodes\GraphUser',
+        'from' => '\FbBasic\GraphNodes\User',
         'parent' => '\FbBasic\GraphNodes\Comment',
     ];
 

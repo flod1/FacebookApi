@@ -39,6 +39,10 @@ class FacebookAbstract implements ServiceManagerAwareInterface
         return $this;
     }
 
+    /**
+     * @param $endpoint
+     * @return \Facebook\FacebookResponse
+     */
     public function get($endpoint){
 
         $this->getEventManager()->trigger(__FUNCTION__. '.pre', $this, array('endpoint' => $endpoint,'accessToken'=>$this->fb->getDefaultAccessToken()));
