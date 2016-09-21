@@ -21,7 +21,9 @@ class GraphFieldHelper extends AbstractHelper
     public function __invoke($fieldname, $mixed)
     {
         $string="";
-        if(is_object($mixed)){
+        if (is_null($mixed)) {
+            $string = "null";
+        }else if(is_object($mixed)){
             switch(get_class($mixed)){
                 //case \Facebook\GraphNodes\GraphNode::class: $string = $this->view->graphnode($mixed);break;
                 case \Facebook\GraphNodes\GraphEdge::class: $string = $this->view->graphedge($mixed);break;
@@ -50,9 +52,7 @@ class GraphFieldHelper extends AbstractHelper
             $string = '<img src="' . $mixed . '" class="img-responsive">';
         } else if ($fieldname == "cover") {
             $string = '<img src="' . $mixed . '" class="img-responsive">';
-        } else if (is_null($mixed)) {
-                $string = "null";
-        }else{
+        } else {
             switch (gettype($mixed)) {
                 case "boolean":
                     $string = ($mixed) ? 'true' : 'false';

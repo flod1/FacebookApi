@@ -35,6 +35,8 @@ class Post extends GraphNode implements GraphInterface
      */
     protected static $graphObjectMap = [
         'from' => '\FbBasic\GraphNodes\User',
+        'place' => '\Facebook\GraphNodes\GraphPage',
+
         'likes' => '\FbBasic\GraphNodes\User',
         'reactions' => '\FbBasic\GraphNodes\User',
         'comments' => '\FbBasic\GraphNodes\Comment',
