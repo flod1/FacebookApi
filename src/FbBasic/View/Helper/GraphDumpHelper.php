@@ -27,6 +27,11 @@ class GraphDumpHelper extends AbstractHelper
                 $string = $this->view->partial('widget/default/partial/dump.phtml', array("list"=>$mixed->asArray()));
                 //var_dump($mixed->asArray());die();
             }
+            else if(is_a($mixed,\Facebook\GraphNodes\GraphEdge::class)){
+                /* @var $mixed \Facebook\GraphNodes\GraphEdge */
+                $string = $this->view->partial('widget/default/partial/dump.phtml', array("list"=>$mixed->asArray()));
+                //var_dump($mixed->asArray());die();
+            }
         }
         else{
             switch(gettype ( $mixed)){
